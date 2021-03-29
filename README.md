@@ -12,4 +12,7 @@
 ![Babel](https://img.shields.io/badge/-Babel-090909?style=for-the-badge&logo=Babel)
 ![NodeJS](https://img.shields.io/badge/-NodeJS-090909?style=for-the-badge&logo=Node.js)
 
+
+![Friday Fever](https://kibatensai.github.io/fridayfever)
+
 ### 💌 Stay tuned!
