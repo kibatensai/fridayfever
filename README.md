@@ -1,4 +1,4 @@
-# 🐱‍👤  Welcome to **Friday Fever Project**
+# 🐱‍👤  Welcome to##  :stars: [Friday Fever](https://kibatensai.github.io/fridayfever) :stars: Project
 ## This is a raw template, which we're gonna update soon
 #### 🖤 Technologies used for now:
 ![ReactJS](https://img.shields.io/badge/-ReactJS-090909?style=for-the-badge&logo=React)
@@ -14,6 +14,6 @@
 
 
 
-##  :stars: [Friday Fever](https://kibatensai.github.io/fridayfever) :stars:
+
 
 ### 💌 Stay tuned!
