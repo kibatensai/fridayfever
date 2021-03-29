@@ -1,0 +1,15 @@
+.mainContainer {
+  margin: 0;
+  background-image: url("https://orsted.com/-/media/WWW/Images/Corp/Campaign/SpaceSafari/space-safari-background.png");
+  color: #eee;
+  width: 100vw;
+  height: 100vh;
+  animation: animation 250s linear infinite;
+  font-size: 18px;
+}
+
+@keyframes animation {
+  100% {
+    background-position: 0px -3000px;
+  }
+}

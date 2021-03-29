@@ -1,0 +1,51 @@
+.input_container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.superInput {
+    border:0;
+    border-bottom:1px solid #555;
+    background: rgb(216, 229, 241, 0.4);
+    width: 150px;
+    height: 0.7rem;
+    padding:10px 0 10px 5px;
+    font-size:18px;
+    color:rgb(216, 229, 241);
+    transition: 0.5s;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.superInput:focus {
+    border:none;
+    outline:none;
+    border-bottom:1px solid rgb(216, 229, 241, 0.3);
+    color: rgb(216, 229, 241);
+    background: #00B4DB;
+    background: -webkit-linear-gradient(to bottom, #0083B0, #00B4DB);
+    background: linear-gradient(to bottom, #0083B0, #00b3db62);
+    box-shadow: 0 0.5em 0.7em -0.25em #00b3db;
+    transform: translateY(-0.2em);
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(2rem);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+}
+
+.errorInput {
+    border: 3px solid lime;
+    background: red;
+}
+
+.error {
+    color: red;
+}
+

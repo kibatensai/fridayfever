@@ -1,0 +1,100 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto+Mono:300,700';
+
+.radio_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px;
+    font-family: 'Roboto Mono'
+}
+.label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    cursor: pointer;
+}
+
+.radio {
+    opacity: 0;
+    z-index: -1;
+}
+
+.text {
+    color: hsla(240, 48%, 91%, 0.863);
+    font-size: 20px;
+    
+  }
+
+.text:hover {
+    text-shadow: 1px 1px 2px rgb(170, 65, 184), 0 0 1em rgb(158, 158, 243), 0 0 0.2em rgb(150, 150, 233);
+    transition: 0.7s;
+}
+
+.design {
+    width: 16px;
+    height: 16px;
+  
+    border: 1px solid hsla(239, 61%, 73%, 0.863);
+    border-radius: 100%;
+    margin-right: 16px;
+  
+    position: relative;
+}
+
+.design:hover {
+    box-shadow: 2px 1px 2px rgb(170, 65, 184), 0 0 1em rgb(158, 158, 243), 0 0 0.2em rgb(150, 150, 233);
+    transition: 0.3s;
+}
+.design::before,
+.design::after {
+  content: "";
+  display: block;
+
+  width: inherit;
+  height: inherit;
+
+  border-radius: inherit;
+
+  position: absolute;
+  transform: scale(0);
+  transform-origin: center center;
+}
+
+.design:before {
+  background: hsl(234, 71%, 77%);
+  opacity: 0;
+  transition: .3s;
+}
+
+.design::after {
+  background: hsl(229, 69%, 70%);
+  opacity: 1;
+  transition: .6s;
+}
+
+.radio:checked+.design::before {
+    opacity: 1;
+    transform: scale(.8);
+}
+
+.radio:hover+.design,
+.radio:focus+.design {
+    border: 1px solidhsl(234, 71%, 77%);
+}
+  
+.radio:hover+.design:before,
+.radio:focus+.design:before {
+    background: hsl(234, 71%, 77%);
+}
+  
+.radio:hover~.text {
+    color:hsl(234, 71%, 77%);
+}
+  
+.radio:focus+.design::after,
+.radio:active+.design::after {
+    opacity: .4;
+    transform: scale(2.7);
+}

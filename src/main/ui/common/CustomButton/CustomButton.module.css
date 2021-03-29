@@ -1,0 +1,39 @@
+.default {
+    border: 2px solid;
+    border-radius: 1px;
+    line-height: 1;
+    margin: 0.5em;
+    padding: .5em 1em;
+    color: rgb(216, 229, 241);
+    transition: 0.5s;
+    font: 300 1em 'Fira Sans', sans-serif;
+    background: hsla(228, 41%, 61%, 0.144);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+
+
+.default:hover,
+.default:focus {
+    color: rgb(216, 229, 241);
+    background: #00B4DB;
+    background: -webkit-linear-gradient(to bottom, #0083B0, #00B4DB);
+    background: linear-gradient(to bottom, #0083B0, #00B4DB);
+    box-shadow: 0 0.5em 0.7em -0.25em #00b3db;
+    transform: translateY(-0.3em);
+}
+
+.red {
+    background: red;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(2rem);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+}
