@@ -13,7 +13,7 @@
 ![NodeJS](https://img.shields.io/badge/-NodeJS-090909?style=for-the-badge&logo=Node.js)
 
 
-### Link here
-##  :stars: [Friday Fever](https://kibatensai.github.io/fridayfever)
+
+##  :stars: [Friday Fever](https://kibatensai.github.io/fridayfever) :stars:
 
 ### 💌 Stay tuned!
