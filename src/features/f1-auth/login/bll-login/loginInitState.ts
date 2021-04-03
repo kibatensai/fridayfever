@@ -1,12 +1,13 @@
 
 export type LoginInitState = {
-    email: string | null
-    password: string | null
+    error: string
+    loading: boolean
+    success: boolean
 
 }
 
-
 export const loginInitialState: LoginInitState = {
-    email: null,
-    password: null
+    error: '',
+    loading: false,
+    success: false
 }
