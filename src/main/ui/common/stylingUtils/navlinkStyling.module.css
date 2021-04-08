@@ -1,11 +1,11 @@
 .loginLink {
-    margin-left: 10px;
-    background: linear-gradient(to bottom, #00B4DB 0%, #00B4DB 100%);
-	background-position: 0 100%;
-	background-repeat: repeat-x;
-	background-size: 3px 3px;
-    color:rgb(216, 229, 241);
-    text-decoration: none;
+  margin-left: 10px;
+  background: linear-gradient(to bottom, #00b4db 0%, #00b4db 100%);
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 3px 3px;
+  color: rgb(216, 229, 241);
+  text-decoration: none;
 }
 
 .loginLink:hover {
