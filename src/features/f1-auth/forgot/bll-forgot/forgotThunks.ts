@@ -8,8 +8,6 @@ export const ForgotTC = (email: string) => async (dispatch: Dispatch) => {
         const res = await forgotAPI.forgot(email)
         dispatch(ForgotActions.setSuccess(true))
         dispatch(ForgotActions.setMessage(res.data.info))
-        console.log(res)
-        debugger;
     } catch (e) {
         const error = e.response ? e.response.data.error : ("Unknown error")
         dispatch(ForgotActions.setError(error))

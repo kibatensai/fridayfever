@@ -11,7 +11,7 @@ export const forgotAPI = {
         return instance.post("/auth/forgot", {
             email,
             from: "roman",
-            message: `<div style="background-color: lime; padding: 15px">password recovery link: <a href='http://localhost:3000/#/set-new-password/$token$'>link</a></div>`
+            message: `<div style="background-color: black; border-radius: 15px; color: #FFFFFF; padding: 15px">password recovery link: <a href='http://localhost:3000/#/set-new-password/$token$'>link</a></div>`
         })
     }
 }

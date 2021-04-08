@@ -9,10 +9,9 @@ export const SetPassTC = (email: string, id: string) => async (dispatch: Dispatc
         dispatch(SetPassActions.setSuccess(false))
         dispatch(SetPassActions.setResponseMessage(res.data.info))
         dispatch(SetPassActions.setError(''))
-        debugger
     } catch (e) {
         const error = e.response ? e.response.data.error : ("Unknown error")
         dispatch(SetPassActions.setError(error))
-        dispatch(SetPassActions.setSuccess(false))
+        dispatch(SetPassActions.setSuccess(true))
     }
 }
