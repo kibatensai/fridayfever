@@ -8,6 +8,8 @@ export const setPassReducer = (state = setPassInitialState, action: SetPassActio
             return {...state, error: action.error}
         case 'setPass/SET_SUCCESS':
             return {...state, success: action.success}
+        case 'setPass/SET_MESSAGE':
+            return {...state, responseMessage: action.message}
         default: {
             return state
         }

@@ -4,11 +4,15 @@ export type SetPassActionsType = InferActionsType<typeof SetPassActions>;
 
 export const SetPassActions = {
     setError: (error: string) => ({
-            type: 'setPass/SET_ERROR',
+        type: 'setPass/SET_ERROR',
         error
-        }as const),
+    } as const),
     setSuccess: (success: boolean) => ({
         type: 'setPass/SET_SUCCESS',
         success
-    }as const)
+    } as const),
+    setResponseMessage: (message: string) => ({
+        type: 'setPass/SET_MESSAGE',
+        message
+    } as const)
 }
