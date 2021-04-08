@@ -1,5 +1,5 @@
 import { Dispatch } from 'redux';
-import { fridayAPI } from '../../../../main/dal/api-instance';
+import { fridayAPI } from './api-instance';
 import { RegisterActions, RegisterActionsType } from './registerActions';
 import { registerInitialState, RegisterInitState } from './registerInitState';
 
