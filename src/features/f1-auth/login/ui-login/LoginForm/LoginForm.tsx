@@ -39,7 +39,7 @@ export const LoginForm: FC<LoginFormType> = ({login, error}) => {
 
     return (
         <>
-            {error !== '' && <CustomSnackbar title={error}/>}
+            {error !== '' && <CustomSnackbar title={error} timer={3000}/>}
             <div className={s.loginForm}>
                 <div className={s.loginGroup}>
                     <label htmlFor='email'>Email:</label>
