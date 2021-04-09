@@ -7,6 +7,8 @@ import s from './LoginForm.module.css'
 import sUtils from './../../../../../main/ui/common/stylingUtils/navlinkStyling.module.css'
 import { LoginDetailsType } from '../../dal-login/loginInstance'
 import { PATH } from '../../../../../main/ui/routes/Routes'
+import { useSelector } from 'react-redux'
+import { AppStoreType } from '../../../../../main/bll/store'
 
 type LoginFormType = {
     login: (userDetails: LoginDetailsType) => void
@@ -16,6 +18,7 @@ type LoginFormType = {
 export const LoginForm: FC<LoginFormType> = ({login, error}) => {
 
     const [details, setDetails] = useState<LoginDetailsType>({email: '', password: '', rememberMe: false})
+    const loading = useSelector<AppStoreType, boolean>(state => state.login.loading)
 
     const emailOnChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setDetails({...details, email: e.target.value})
@@ -35,7 +38,7 @@ export const LoginForm: FC<LoginFormType> = ({login, error}) => {
 
     return (
         <>
-            {error !== '' ? error : ''}
+            {error !== '' && error}
             <div className={s.loginForm}>
                 <div className={s.loginGroup}>
                     <label htmlFor='email'>Email:</label>
@@ -50,7 +53,7 @@ export const LoginForm: FC<LoginFormType> = ({login, error}) => {
                     <label className={s.rememberMeLabel}>remember me</label>
                 </div>
                 <div className={s.loginGroup}>
-                    <CustomButton type='submit'onClick={detailsWrap}>Sign in</CustomButton>
+                    <CustomButton type='submit'onClick={detailsWrap} disabled={loading}>Sign in</CustomButton>
                 </div>
                 <div className={s.loginGroup}>
                     <NavLink to={PATH.FORGOT} className={sUtils.loginLink}>forgot?</NavLink>

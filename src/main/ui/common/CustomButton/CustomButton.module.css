@@ -23,6 +23,17 @@
     transform: translateY(-0.3em);
 }
 
+.default:active {
+    box-shadow: 0 1em 1.5em -0.50em #ff00ea;
+    background: #af2e9ed8;
+}
+
+.default:disabled {
+    color: rgba(192, 26, 26, 0.678);
+    box-shadow: 0 0.5em 0.7em -0.25em #ff0000a6;
+    background: #ffffffc5;
+}
+
 .red {
     background: red;
 }
