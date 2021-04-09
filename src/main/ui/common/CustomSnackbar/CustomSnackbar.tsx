@@ -3,9 +3,10 @@ import { FC, memo, useEffect, useState } from 'react'
 
 type CustomSnackbarType = {
     title: string
+    timer: number
 }
 
-export const CustomSnackbar: FC<CustomSnackbarType> = memo(({ title }) => {
+export const CustomSnackbar: FC<CustomSnackbarType> = memo(({ title, timer }) => {
 
     const [visual, setVisual] = useState<boolean>(false)
 
@@ -13,11 +14,11 @@ export const CustomSnackbar: FC<CustomSnackbarType> = memo(({ title }) => {
         setVisual(() => true)
         const show = setTimeout(() => {
             setVisual(() => false)
-        }, 3000)
+        }, timer)
         return () => {
             clearTimeout(show)
         }
-    }, [title])
+    }, [])
 
     return (
         <>
