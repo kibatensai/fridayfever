@@ -18,6 +18,5 @@ export const signIn = (
       dispatch(LoginActions.setSuccess(false))
       dispatch(LoginActions.setLoading(false))
       dispatch(LoginActions.setError(error))
-
   }
 };

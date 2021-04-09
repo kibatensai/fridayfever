@@ -9,6 +9,7 @@ import { LoginDetailsType } from '../../dal-login/loginInstance'
 import { PATH } from '../../../../../main/ui/routes/Routes'
 import { useSelector } from 'react-redux'
 import { AppStoreType } from '../../../../../main/bll/store'
+import { CustomSnackbar } from '../../../../../main/ui/common/CustomSnackbar/CustomSnackbar'
 
 type LoginFormType = {
     login: (userDetails: LoginDetailsType) => void
@@ -38,7 +39,7 @@ export const LoginForm: FC<LoginFormType> = ({login, error}) => {
 
     return (
         <>
-            {error !== '' && error}
+            {error !== '' && <CustomSnackbar title={error}/>}
             <div className={s.loginForm}>
                 <div className={s.loginGroup}>
                     <label htmlFor='email'>Email:</label>
