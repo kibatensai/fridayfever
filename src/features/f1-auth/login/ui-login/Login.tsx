@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { memo, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Redirect } from "react-router"
 import { AppStoreType } from "../../../../main/bll/store"
@@ -8,7 +8,7 @@ import { signIn } from "../bll-login/loginThunks"
 import { LoginDetailsType } from "../dal-login/loginInstance"
 import { LoginForm } from "./LoginForm/LoginForm"
 
-export const Login = () => {
+export const Login = memo(() => {
 
     const dispatch = useDispatch()
     const success = useSelector<AppStoreType, boolean>(state => state.login.success)
@@ -16,7 +16,7 @@ export const Login = () => {
 
     useEffect(() => {
         dispatch(LoginActions.setError(''))
-    }, [])
+    }, [dispatch])
 
     const login = (details: LoginDetailsType) => {
         dispatch(signIn(details))
@@ -29,4 +29,4 @@ export const Login = () => {
             <LoginForm login={login} error={error}/>
         </>
     )
-}
+})

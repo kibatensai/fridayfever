@@ -1,7 +1,8 @@
 import axios from "axios"
+import { devURL, herokuURL } from "../../../../main/dal/baseURLs"
 
 const instance = axios.create({
-    baseURL: 'https://neko-back.herokuapp.com/2.0/',
+    baseURL: herokuURL,
     withCredentials: true
 })
 
@@ -9,7 +10,12 @@ const instance = axios.create({
 export const loginAPI = {
     signIn(data: LoginDetailsType) {
         return instance.post('auth/login', data)
-
+    },
+    signOut() {
+        return instance.delete('auth/me')
+    },
+    me() {
+        return instance.post('auth/me')
     }
 }
 
