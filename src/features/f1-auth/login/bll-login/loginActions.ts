@@ -18,5 +18,4 @@ export const LoginActions = {
       type: "login/SET_SUCCESS",
       success,
     } as const),
-
 };
