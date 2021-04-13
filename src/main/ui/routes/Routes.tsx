@@ -7,6 +7,8 @@ import {Login} from "../../../features/f1-auth/login/ui-login/Login"
 import {Profile} from "../../../features/f1-auth/profile/ui-profile/Profile"
 import {Register} from "../../../features/f1-auth/register/ui-register/Register"
 import {SetPassword} from "../../../features/f1-auth/setPass/ui-setPass/SetPassword"
+import { Cards } from "../../../features/f2-cards/cards/ui/Cards"
+import { Packs } from "../../../features/f2-cards/packs/ui/Packs"
 import {ErrorPage} from "../errorPage/ui/ErrorPage"
 
 export const PATH = {
@@ -17,7 +19,9 @@ export const PATH = {
     FORGOT: '/forgot',
     SET_PASS: '/set-new-password/:id',
     TEST: '/test',
-    ERROR_PAGE: '/404'
+    ERROR_PAGE: '/404',
+    CARDS: '/cards',
+    PACKS: '/packs'
 
     // add paths
 }
@@ -35,6 +39,8 @@ export const Routes = () => {
                 <Route path={PATH.PROFILE} render={() => <Profile/>}/>
                 <Route path={PATH.FORGOT} render={() => <Forgot/>}/>
                 <Route path={PATH.SET_PASS} render={() => <SetPassword/>}/>
+                <Route path={PATH.PACKS} render={() => <Packs/>}/>
+                <Route path={PATH.CARDS} render={() => <Cards/>}/>
                 <Route path={PATH.TEST} render={() => <TestComponent/>}/>
 
 
