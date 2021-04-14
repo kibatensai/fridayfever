@@ -7,9 +7,14 @@ export const getPacks = (params: ParamsType): ThunkAction<void, AppStoreType, un
     packsAPI.getPacks(params)
         .then(({data}) => {
             dispatch(PacksActions.setPacks(data.cardPacks))
-            console.log(data)
         })
         .catch(e => {
             console.log(e)
         })
+}
+
+export const addPack = (): ThunkAction<void, AppStoreType, unknown, PacksActionsType> => (dispatch) => {
+    packsAPI.addPack()
+    dispatch(getPacks({}))
+
 }

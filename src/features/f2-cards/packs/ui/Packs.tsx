@@ -4,7 +4,7 @@ import { Redirect } from "react-router-dom"
 import { AppStoreType } from "../../../../main/bll/store"
 import { CustomTable } from "../../../../main/ui/common/CustomTable/CustomTable"
 import { PATH } from "../../../../main/ui/routes/Routes"
-import { getPacks } from "../bll/packsThunks"
+import { addPack, getPacks } from "../bll/packsThunks"
 
 export const Packs = () => {
 
@@ -13,14 +13,18 @@ export const Packs = () => {
     const success = useSelector<AppStoreType, boolean>(state => state.login.success)
 
     useEffect(() => {
-        dispatch(getPacks({pageCount: 50}))
+        dispatch(getPacks({}))
     }, [dispatch])
+
+    const addPackHandler = () => {
+        dispatch(addPack())
+    }
 
     if (!success) { return <Redirect to={PATH.LOGIN} /> }
     return (
         <>
             Packs page
-            <CustomTable title={['Packs', 'Cards', 'Updated', 'url']} data={packs}/>
+            <CustomTable title={['Packs', 'Cards', 'Updated', 'url']} data={packs} addItemCallback={addPackHandler}/>
         </>
     )
 }
