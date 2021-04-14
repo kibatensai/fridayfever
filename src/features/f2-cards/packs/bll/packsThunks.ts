@@ -15,18 +15,25 @@ export const getPacks = (params: ParamsType): ThunkAction<void, AppStoreType, un
 
 export const addPack = (): ThunkAction<void, AppStoreType, unknown, PacksActionsType> => (dispatch) => {
     packsAPI.addPack()
-    dispatch(getPacks({}))
+        .then(data => {
+            dispatch(getPacks({}))
+        })
+
 
 }
 
 export const deletePack = (id: string): ThunkAction<void, AppStoreType, unknown, PacksActionsType> => (dispatch) => {
     packsAPI.deletePack(id)
-    dispatch(getPacks({}))
+        .then(data => {
+        dispatch(getPacks({}))
+    })
 
 }
 
 export const updatePack = (id: string): ThunkAction<void, AppStoreType, unknown, PacksActionsType> => (dispatch) => {
     packsAPI.updatePack(id)
-    dispatch(getPacks({}))
+        .then(data => {
+        dispatch(getPacks({}))
+    })
 
 }
