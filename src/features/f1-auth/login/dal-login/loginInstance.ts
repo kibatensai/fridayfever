@@ -2,7 +2,7 @@ import axios from "axios"
 import { devURL, herokuURL } from "../../../../main/dal/baseURLs"
 
 const instance = axios.create({
-    baseURL: herokuURL,
+    baseURL: devURL,
     withCredentials: true
 })
 
