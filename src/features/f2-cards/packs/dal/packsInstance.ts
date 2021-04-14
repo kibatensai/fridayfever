@@ -21,10 +21,18 @@ export const packsAPI = {
   getPacks(params: ParamsType) {
     return instance.get<GetDataType>("cards/pack", {
       params: {
+        pageCount: 100,
         ...params
       }
-    });
+    })
   },
+  addPack() {
+    return instance.post('cards/pack', {
+      cardsPack: {
+        name: 'adding pack test'
+      }
+    })
+  }
 };
 
 export type GetDataType = {
