@@ -1,14 +1,9 @@
 import axios from "axios";
-import { devURL } from "../../../../main/dal/baseURLs";
+import { devURL, herokuURL } from "../../../../main/dal/baseURLs";
 import { PackType } from "../bll/packsInitState";
 
-export type GetDataType = {
-  cardPacks: PackType[];
-  error: string;
-};
-
 const instance = axios.create({
-  baseURL: devURL,
+  baseURL: herokuURL,
   withCredentials: true,
 });
 
@@ -30,4 +25,9 @@ export const packsAPI = {
       }
     });
   },
+};
+
+export type GetDataType = {
+  cardPacks: PackType[];
+  error: string;
 };
