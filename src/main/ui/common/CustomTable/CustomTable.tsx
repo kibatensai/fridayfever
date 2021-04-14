@@ -1,4 +1,4 @@
-import { FC } from "react"
+import { FC, memo } from "react"
 import CustomButton from './../CustomButton/CustomButton'
 import s from './CustomTable.module.css'
 
@@ -11,7 +11,7 @@ export type CustomTablePropsType = {
 
 }
 
-export const CustomTable: FC<CustomTablePropsType> = ({ title, data, addItemCallback: addItemCallback, deleteItemCallback, updateItemCallback }) => {
+export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, addItemCallback: addItemCallback, deleteItemCallback, updateItemCallback }) => {
 
     const recentDate = (date: string): string => {
         return new Date(date).toLocaleDateString("ru", {
@@ -63,4 +63,4 @@ export const CustomTable: FC<CustomTablePropsType> = ({ title, data, addItemCall
             </table>
         </>
     )
-}
+})
