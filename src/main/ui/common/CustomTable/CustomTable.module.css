@@ -1,0 +1,25 @@
+@import 'https://fonts.googleapis.com/css?family=Roboto+Mono:300,700';
+.tableStyling {
+    font-family: 'Roboto Mono';
+    color:rgb(247, 233, 247);
+    text-shadow: black 1px 1px 0, black -1px -1px 0,
+                 black -1px 1px 0, black 1px -1px 0;
+    width: 90%;
+    border: 2px solid rgba(196, 211, 238, 0.815);
+    background-color: #4b6bb71f;
+
+}
+
+
+
+.trStyling {
+    border: 3px solid rgba(196, 211, 238, 0.815);
+}
+
+.tdStyling {
+    max-width: 120px;
+    box-sizing: border-box;
+    overflow-wrap: break-word;
+    border: 1px solid rgba(196, 211, 238, 0.815);
+
+}

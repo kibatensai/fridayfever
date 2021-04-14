@@ -5,6 +5,7 @@ import { forgotReducer } from "../../features/f1-auth/forgot/bll-forgot/forgotRe
 import { profileReducer } from '../../features/f1-auth/profile/bll-profile/profileReducer';
 import { registerReducer } from '../../features/f1-auth/register/bll-register/registerReducer';
 import { setPassReducer } from '../../features/f1-auth/setPass/bll-setPass/setPassReducer';
+import { packsReducer } from '../../features/f2-cards/packs/bll/packsReducer';
 
 
 const rootReducer = combineReducers({
@@ -13,6 +14,7 @@ const rootReducer = combineReducers({
     profile: profileReducer,
     register: registerReducer,
     setPass: setPassReducer,
+    packs: packsReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
