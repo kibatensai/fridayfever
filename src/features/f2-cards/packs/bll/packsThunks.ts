@@ -18,3 +18,9 @@ export const addPack = (): ThunkAction<void, AppStoreType, unknown, PacksActions
     dispatch(getPacks({}))
 
 }
+
+export const deletePack = (id: string): ThunkAction<void, AppStoreType, unknown, PacksActionsType> => (dispatch) => {
+    packsAPI.deletePack(id)
+    dispatch(getPacks({}))
+
+}

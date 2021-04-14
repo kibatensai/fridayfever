@@ -32,6 +32,9 @@ export const packsAPI = {
         name: 'adding pack test'
       }
     })
+  },
+  deletePack(id: string) {
+    return instance.delete(`cards/pack?id=${id}`)
   }
 };
 
