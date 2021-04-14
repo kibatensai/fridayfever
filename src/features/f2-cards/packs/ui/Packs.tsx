@@ -4,7 +4,8 @@ import { Redirect } from "react-router-dom"
 import { AppStoreType } from "../../../../main/bll/store"
 import { CustomTable } from "../../../../main/ui/common/CustomTable/CustomTable"
 import { PATH } from "../../../../main/ui/routes/Routes"
-import { addPack, deletePack, getPacks } from "../bll/packsThunks"
+import { me } from "../../../f1-auth/login/bll-login/loginThunks"
+import { addPack, deletePack, getPacks, updatePack } from "../bll/packsThunks"
 
 export const Packs = () => {
 
@@ -13,6 +14,7 @@ export const Packs = () => {
     const success = useSelector<AppStoreType, boolean>(state => state.login.success)
 
     useEffect(() => {
+        if (!success) {dispatch(me())}
         dispatch(getPacks({}))
     }, [dispatch])
 
@@ -24,11 +26,18 @@ export const Packs = () => {
         dispatch(deletePack(id))
     }
 
+    const updatePackHandler = (id: string) => {
+        dispatch(updatePack(id))
+    }
+
     if (!success) { return <Redirect to={PATH.LOGIN} /> }
     return (
         <>
             Packs page
-            <CustomTable title={['Packs', 'Cards', 'Updated', 'url']} data={packs} addItemCallback={addPackHandler} deleteItemCallback={deletePackHandler}/>
+            <CustomTable title={['Packs', 'Cards', 'Updated', 'url']}
+                data={packs} addItemCallback={addPackHandler}
+                deleteItemCallback={deletePackHandler}
+                updateItemCallback={updatePackHandler}/>
         </>
     )
 }
