@@ -1,11 +1,6 @@
 import axios from "axios";
-import { devURL, herokuURL } from "../../../../main/dal/baseURLs";
+import { instance } from "../../../../main/dal/instance";
 import { PackType } from "../bll/packsInitState";
-
-const instance = axios.create({
-  baseURL: herokuURL,
-  withCredentials: true,
-});
 
 export type ParamsType = {
     packName?: string | undefined
