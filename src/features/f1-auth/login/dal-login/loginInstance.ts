@@ -1,11 +1,5 @@
 import axios from "axios"
-import { devURL, herokuURL } from "../../../../main/dal/baseURLs"
-
-const instance = axios.create({
-    baseURL: herokuURL,
-    withCredentials: true
-})
-
+import { instance } from "../../../../main/dal/instance";
 
 export const loginAPI = {
     signIn(data: LoginDetailsType) {

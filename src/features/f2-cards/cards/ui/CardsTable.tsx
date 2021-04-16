@@ -1,20 +1,20 @@
-import React, { FC, memo } from "react"
-import { NavLink } from "react-router-dom"
-import { PATH } from "../../routes/Routes"
-import CustomButton from './../CustomButton/CustomButton'
-import navlinkStyling from './../stylingUtils/navlinkStyling.module.css'
-import s from './CustomTable.module.css'
+import React, { FC, memo } from "react";
+import { NavLink } from "react-router-dom";
+import CustomButton from "../../../../main/ui/common/CustomButton/CustomButton";
+import { PATH } from "../../../../main/ui/routes/Routes";
+import s from './../../../../main/ui/common/CustomTable/CustomTable.module.css'
 
-export type CustomTablePropsType = {
+export type CardsTablePropsType = {
     title: string[]
-    data: any
-    addItemCallback?: () => void
+    data?: any
+    cardId: string
+    addItemCallback?: (id: string) => void
     deleteItemCallback?: (id: string) => void
     updateItemCallback?: (id: string) => void
 
 }
 
-export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, addItemCallback: addItemCallback, deleteItemCallback, updateItemCallback }) => {
+export const CardsTable: FC<CardsTablePropsType> = memo(({ title, data, cardId, addItemCallback, deleteItemCallback, updateItemCallback }) => {
 
     const recentDate = (date: string): string => {
         return new Date(date).toLocaleDateString("ru", {
@@ -25,7 +25,7 @@ export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, addIte
     };
 
     const onAddItemButtonClick = () => {
-        addItemCallback && addItemCallback()
+        addItemCallback && addItemCallback(cardId)
     }
 
     const onDeleteItemButtonClick = (id: string) => {
@@ -41,14 +41,14 @@ export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, addIte
     </th>)
 
     const dataFiller = data.map((dataItem: any, dataIndex: number) => <tr className={s.trStyling} key={title + '-row-' + (dataItem._id || dataIndex)}>
-        <td className={s.tdStyling}>{dataItem.name}</td>
-        <td className={s.tdStyling}>{dataItem.cardsCount}</td>
+        <td className={s.tdStyling}>{dataItem.question}</td>
+        <td className={s.tdStyling}>{dataItem.answer}</td>
+        <td className={s.tdStyling}>{dataItem.grade}</td>
         <td className={s.tdStyling}>{recentDate(dataItem.updated)}</td>
         <td className={s.tdStyling}></td>
         <td className={s.tdStyling}>
             <CustomButton onClick={() => onUpdateItemCallback(dataItem._id)}>upd</CustomButton>
             <CustomButton onClick={() => onDeleteItemButtonClick(dataItem._id)}>del</CustomButton>
-            <NavLink to={`${PATH.CARDS}/${dataItem._id}`} className={navlinkStyling.loginLink}>Cards</NavLink>
         </td>
     </tr>)
 
