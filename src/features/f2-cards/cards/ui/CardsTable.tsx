@@ -1,20 +1,19 @@
 import React, { FC, memo } from "react";
-import { NavLink } from "react-router-dom";
 import CustomButton from "../../../../main/ui/common/CustomButton/CustomButton";
-import { PATH } from "../../../../main/ui/routes/Routes";
-import s from './../../../../main/ui/common/CustomTable/CustomTable.module.css'
+import s from './../../../../main/ui/common/CustomTable/CustomTable.module.css';
 
 export type CardsTablePropsType = {
     title: string[]
     data?: any
     cardId: string
+    disabled: boolean
     addItemCallback?: (id: string) => void
     deleteItemCallback?: (id: string) => void
     updateItemCallback?: (id: string) => void
 
 }
 
-export const CardsTable: FC<CardsTablePropsType> = memo(({ title, data, cardId, addItemCallback, deleteItemCallback, updateItemCallback }) => {
+export const CardsTable: FC<CardsTablePropsType> = memo(({ title, data, cardId, disabled, addItemCallback, deleteItemCallback, updateItemCallback }) => {
 
     const recentDate = (date: string): string => {
         return new Date(date).toLocaleDateString("ru", {
@@ -47,8 +46,8 @@ export const CardsTable: FC<CardsTablePropsType> = memo(({ title, data, cardId, 
         <td className={s.tdStyling}>{recentDate(dataItem.updated)}</td>
         <td className={s.tdStyling}></td>
         <td className={s.tdStyling}>
-            <CustomButton onClick={() => onUpdateItemCallback(dataItem._id)}>upd</CustomButton>
-            <CustomButton onClick={() => onDeleteItemButtonClick(dataItem._id)}>del</CustomButton>
+            <CustomButton onClick={() => onUpdateItemCallback(dataItem._id)} disabled={disabled}>upd</CustomButton>
+            <CustomButton onClick={() => onDeleteItemButtonClick(dataItem._id)} disabled={disabled}>del</CustomButton>
         </td>
     </tr>)
 
@@ -58,7 +57,7 @@ export const CardsTable: FC<CardsTablePropsType> = memo(({ title, data, cardId, 
                 <thead className={s.tableStyling}>
                     <tr>
                         {titleFiller}
-                        <th><CustomButton onClick={onAddItemButtonClick}>Add</CustomButton></th>
+                        <th><CustomButton onClick={onAddItemButtonClick} disabled={disabled}>Add</CustomButton></th>
                     </tr>
                 </thead>
                 <tbody>

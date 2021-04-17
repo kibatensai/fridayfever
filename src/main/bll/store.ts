@@ -7,6 +7,7 @@ import { registerReducer } from '../../features/f1-auth/register/bll-register/re
 import { setPassReducer } from '../../features/f1-auth/setPass/bll-setPass/setPassReducer';
 import { packsReducer } from '../../features/f2-cards/packs/bll/packsReducer';
 import { cardsReducer } from '../../features/f2-cards/cards/bll/cardsReducer';
+import { errorHandlingReducer } from '../utils/ErrorHandling/bll/errorHandlingReducer';
 
 
 const rootReducer = combineReducers({
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     register: registerReducer,
     setPass: setPassReducer,
     packs: packsReducer,
-    cards: cardsReducer
+    cards: cardsReducer,
+    errorHandling: errorHandlingReducer
 })
 
 const store = createStore(rootReducer, applyMiddleware(thunk))
