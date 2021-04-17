@@ -9,6 +9,12 @@ export const packsReducer = (state = PacksInitState, action: PacksActionsType): 
                 packs: action.packs
             }
         }
+        case "packs/SET_PACK_ID": {
+            return {
+                ...state,
+                recent_pack_id: action.id
+            }
+        }
         default:
             return state
     }

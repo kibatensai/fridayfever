@@ -11,10 +11,11 @@ export type CustomTablePropsType = {
     addItemCallback?: () => void
     deleteItemCallback?: (id: string) => void
     updateItemCallback?: (id: string) => void
+    saveRecentIdCallback?: (id: string) => void
 
 }
 
-export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, addItemCallback: addItemCallback, deleteItemCallback, updateItemCallback }) => {
+export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, addItemCallback: addItemCallback, deleteItemCallback, updateItemCallback, saveRecentIdCallback }) => {
 
     const recentDate = (date: string): string => {
         return new Date(date).toLocaleDateString("ru", {
@@ -36,6 +37,10 @@ export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, addIte
         updateItemCallback && updateItemCallback(id)
     }
 
+    const packIdSaver = (id: string) => {
+        saveRecentIdCallback && saveRecentIdCallback(id)
+    }
+
     const titleFiller = title.map(t => <th key={'title-' + t}>
         {t}
     </th>)
@@ -48,7 +53,7 @@ export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, addIte
         <td className={s.tdStyling}>
             <CustomButton onClick={() => onUpdateItemCallback(dataItem._id)}>upd</CustomButton>
             <CustomButton onClick={() => onDeleteItemButtonClick(dataItem._id)}>del</CustomButton>
-            <NavLink to={`${PATH.CARDS}/${dataItem._id}`} className={navlinkStyling.loginLink}>Cards</NavLink>
+            <NavLink to={`${PATH.CARDS}/${dataItem._id}`} className={navlinkStyling.loginLink} onClick={() => packIdSaver(dataItem._id)}>Cards</NavLink>
         </td>
     </tr>)
 
