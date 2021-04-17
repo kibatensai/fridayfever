@@ -12,10 +12,11 @@ export type CustomTablePropsType = {
     deleteItemCallback?: (id: string) => void
     updateItemCallback?: (id: string) => void
     saveRecentIdCallback?: (id: string) => void
+    disabled?: boolean
 
 }
 
-export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, addItemCallback: addItemCallback, deleteItemCallback, updateItemCallback, saveRecentIdCallback }) => {
+export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, disabled, addItemCallback, deleteItemCallback, updateItemCallback, saveRecentIdCallback }) => {
 
     const recentDate = (date: string): string => {
         return new Date(date).toLocaleDateString("ru", {
@@ -51,8 +52,8 @@ export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, addIte
         <td className={s.tdStyling}>{recentDate(dataItem.updated)}</td>
         <td className={s.tdStyling}></td>
         <td className={s.tdStyling}>
-            <CustomButton onClick={() => onUpdateItemCallback(dataItem._id)}>upd</CustomButton>
-            <CustomButton onClick={() => onDeleteItemButtonClick(dataItem._id)}>del</CustomButton>
+            <CustomButton onClick={() => onUpdateItemCallback(dataItem._id)} disabled={disabled}>upd</CustomButton>
+            <CustomButton onClick={() => onDeleteItemButtonClick(dataItem._id)} disabled={disabled}>del</CustomButton>
             <NavLink to={`${PATH.CARDS}/${dataItem._id}`} className={navlinkStyling.loginLink} onClick={() => packIdSaver(dataItem._id)}>Cards</NavLink>
         </td>
     </tr>)
@@ -63,7 +64,7 @@ export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, addIte
                 <thead className={s.tableStyling}>
                     <tr>
                         {titleFiller}
-                        <th><CustomButton onClick={onAddItemButtonClick}>Add</CustomButton></th>
+                        <th><CustomButton onClick={onAddItemButtonClick} disabled={disabled}>Add</CustomButton></th>
                     </tr>
                 </thead>
                 <tbody>
