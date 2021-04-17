@@ -1,23 +1,23 @@
 {
   "files": {
-    "main.css": "/fridayfever/static/css/main.ba78b798.chunk.css",
-    "main.js": "/fridayfever/static/js/main.4cc3a77e.chunk.js",
-    "main.js.map": "/fridayfever/static/js/main.4cc3a77e.chunk.js.map",
-    "runtime-main.js": "/fridayfever/static/js/runtime-main.a2abc0ea.js",
-    "runtime-main.js.map": "/fridayfever/static/js/runtime-main.a2abc0ea.js.map",
-    "static/js/2.5b109b8b.chunk.js": "/fridayfever/static/js/2.5b109b8b.chunk.js",
-    "static/js/2.5b109b8b.chunk.js.map": "/fridayfever/static/js/2.5b109b8b.chunk.js.map",
-    "static/js/3.933a85bd.chunk.js": "/fridayfever/static/js/3.933a85bd.chunk.js",
-    "static/js/3.933a85bd.chunk.js.map": "/fridayfever/static/js/3.933a85bd.chunk.js.map",
+    "main.css": "/fridayfever/static/css/main.1ccf5cb4.chunk.css",
+    "main.js": "/fridayfever/static/js/main.e5fb24ee.chunk.js",
+    "main.js.map": "/fridayfever/static/js/main.e5fb24ee.chunk.js.map",
+    "runtime-main.js": "/fridayfever/static/js/runtime-main.22896a90.js",
+    "runtime-main.js.map": "/fridayfever/static/js/runtime-main.22896a90.js.map",
+    "static/js/2.6ee2bd4a.chunk.js": "/fridayfever/static/js/2.6ee2bd4a.chunk.js",
+    "static/js/2.6ee2bd4a.chunk.js.map": "/fridayfever/static/js/2.6ee2bd4a.chunk.js.map",
+    "static/js/3.7f403552.chunk.js": "/fridayfever/static/js/3.7f403552.chunk.js",
+    "static/js/3.7f403552.chunk.js.map": "/fridayfever/static/js/3.7f403552.chunk.js.map",
     "index.html": "/fridayfever/index.html",
-    "static/css/main.ba78b798.chunk.css.map": "/fridayfever/static/css/main.ba78b798.chunk.css.map",
-    "static/js/2.5b109b8b.chunk.js.LICENSE.txt": "/fridayfever/static/js/2.5b109b8b.chunk.js.LICENSE.txt",
+    "static/css/main.1ccf5cb4.chunk.css.map": "/fridayfever/static/css/main.1ccf5cb4.chunk.css.map",
+    "static/js/2.6ee2bd4a.chunk.js.LICENSE.txt": "/fridayfever/static/js/2.6ee2bd4a.chunk.js.LICENSE.txt",
     "static/media/dbringload.46fb05e0.svg": "/fridayfever/static/media/dbringload.46fb05e0.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.a2abc0ea.js",
-    "static/js/2.5b109b8b.chunk.js",
-    "static/css/main.ba78b798.chunk.css",
-    "static/js/main.4cc3a77e.chunk.js"
+    "static/js/runtime-main.22896a90.js",
+    "static/js/2.6ee2bd4a.chunk.js",
+    "static/css/main.1ccf5cb4.chunk.css",
+    "static/js/main.e5fb24ee.chunk.js"
   ]
 }
