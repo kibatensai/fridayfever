@@ -5,6 +5,7 @@ import { AppStoreType } from "../../../../main/bll/store"
 import { CustomTable } from "../../../../main/ui/common/CustomTable/CustomTable"
 import { PATH } from "../../../../main/ui/routes/Routes"
 import { me } from "../../../f1-auth/login/bll-login/loginThunks"
+import { PacksActions } from "../bll/packsActions"
 import { addPack, deletePack, getPacks, updatePack } from "../bll/packsThunks"
 
 export const Packs = () => {
@@ -30,6 +31,10 @@ export const Packs = () => {
         dispatch(updatePack(id))
     }
 
+    const packIdSaver = (id: string) => {
+        dispatch(PacksActions.setPackId(id))
+    }
+
     if (!success) { return <Redirect to={PATH.LOGIN} /> }
     return (
         <>
@@ -37,7 +42,8 @@ export const Packs = () => {
             <CustomTable title={['Packs', 'Cards', 'Updated', 'url']}
                 data={packs} addItemCallback={addPackHandler}
                 deleteItemCallback={deletePackHandler}
-                updateItemCallback={updatePackHandler}/>
+                updateItemCallback={updatePackHandler}
+                saveRecentIdCallback={packIdSaver}/>
         </>
     )
 }

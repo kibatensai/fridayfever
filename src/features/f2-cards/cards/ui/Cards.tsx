@@ -13,6 +13,7 @@ export const Cards = () => {
     const dispatch = useDispatch()
     const cards = useSelector<AppStoreType, CardType[]>(state => state.cards.cards)
     const { id } = useParams<{ id: string }>()
+    console.log(id)
 
     useEffect(() => {
         dispatch(getCards(id))

@@ -28,9 +28,6 @@ export const PATH = {
 
 
 export const Routes = () => {
-
-    const { id } = useParams<{id: string}>()
-
     return (
         <>
             <Switch>

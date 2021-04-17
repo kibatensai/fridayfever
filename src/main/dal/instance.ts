@@ -3,6 +3,6 @@ import { devURL, herokuURL } from "./baseURLs";
 
 
 export const instance = axios.create({
-    baseURL: herokuURL,
+    baseURL: devURL,
     withCredentials: true,
 });
