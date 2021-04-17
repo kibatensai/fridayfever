@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/fridayfever/static/css/main.ba78b798.chunk.css",
-    "main.js": "/fridayfever/static/js/main.c4c64a5c.chunk.js",
-    "main.js.map": "/fridayfever/static/js/main.c4c64a5c.chunk.js.map",
+    "main.js": "/fridayfever/static/js/main.4cc3a77e.chunk.js",
+    "main.js.map": "/fridayfever/static/js/main.4cc3a77e.chunk.js.map",
     "runtime-main.js": "/fridayfever/static/js/runtime-main.a2abc0ea.js",
     "runtime-main.js.map": "/fridayfever/static/js/runtime-main.a2abc0ea.js.map",
     "static/js/2.5b109b8b.chunk.js": "/fridayfever/static/js/2.5b109b8b.chunk.js",
@@ -18,6 +18,6 @@
     "static/js/runtime-main.a2abc0ea.js",
     "static/js/2.5b109b8b.chunk.js",
     "static/css/main.ba78b798.chunk.css",
-    "static/js/main.c4c64a5c.chunk.js"
+    "static/js/main.4cc3a77e.chunk.js"
   ]
 }
