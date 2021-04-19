@@ -12,7 +12,7 @@ export const SetPassword = () => {
     const error = useSelector<AppStoreType, string>(state => state.setPass.error)
     const success = useSelector<AppStoreType, boolean>(state => state.setPass.success)
     const responseMessage = useSelector<AppStoreType, string>(state => state.setPass.responseMessage)
-    const {id} = useParams<{ id?: string }>();
+    const {id} = useParams<{ id: string }>();
     const setNewPassword = (password: string) => {
         if (id && id !== ':id') {
 

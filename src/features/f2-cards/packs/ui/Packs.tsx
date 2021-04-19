@@ -11,6 +11,7 @@ import { me } from "../../../f1-auth/login/bll-login/loginThunks"
 import { PacksActions } from "../bll/packsActions"
 import { addPack, deletePack, getPacks, updatePack } from "../bll/packsThunks"
 import s from './Packs.module.css'
+import {Sort} from "./Sort";
 
 export const Packs = () => {
 
@@ -48,6 +49,7 @@ export const Packs = () => {
             Packs page
             {loading && <Preloader/>}
             {error !== '' && <CustomSnackbar title={error} timer={3000} />}
+            <Sort />
             <CustomTable title={['Packs', 'Cards', 'Updated', 'url']}
                 data={packs} addItemCallback={addPackHandler}
                 deleteItemCallback={deletePackHandler}
