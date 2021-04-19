@@ -11,7 +11,7 @@ import { me } from "../../../f1-auth/login/bll-login/loginThunks"
 import { PacksActions } from "../bll/packsActions"
 import { addPack, deletePack, getPacks, updatePack } from "../bll/packsThunks"
 import s from './Packs.module.css'
-import {Sort} from "./Sort";
+import {Sort} from "./Sort/Sort";
 
 export const Packs = () => {
 

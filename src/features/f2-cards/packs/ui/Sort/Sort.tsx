@@ -1,8 +1,8 @@
 import React from 'react'
 import s from './Sort.module.css'
 import {useDispatch} from "react-redux";
-import {getPacks} from "../bll/packsThunks";
-import CustomButton from "../../../../main/ui/common/CustomButton/CustomButton";
+import {getPacks} from "../../bll/packsThunks";
+import CustomButton from "../../../../../main/ui/common/CustomButton/CustomButton";
 
 export const Sort = () => {
     const dispatch = useDispatch();
