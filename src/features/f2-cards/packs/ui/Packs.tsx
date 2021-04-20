@@ -6,6 +6,7 @@ import { CustomTable } from "../../../../main/ui/common/CustomTable/CustomTable"
 import { PATH } from "../../../../main/ui/routes/Routes"
 import { me } from "../../../f1-auth/login/bll-login/loginThunks"
 import { addPack, deletePack, getPacks, updatePack } from "../bll/packsThunks"
+import { Pagination } from "./Paginator"
 
 export const Packs = () => {
 
@@ -34,6 +35,7 @@ export const Packs = () => {
     return (
         <>
             Packs page
+            <Pagination/>
             <CustomTable title={['Packs', 'Cards', 'Updated', 'url']}
                 data={packs} addItemCallback={addPackHandler}
                 deleteItemCallback={deletePackHandler}
