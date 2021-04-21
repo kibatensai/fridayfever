@@ -8,10 +8,11 @@ import s from './Paginator.module.css';
 export const Pagination = () => {
   const dispatch = useDispatch();
   const page = useSelector<AppStoreType, number>((state) => state.packs.page);
-  
+
   const clickPage = (event: MouseEvent<HTMLButtonElement>) => {
     //dispatch(PacksActions.setPage(+event.currentTarget.innerHTML));
     dispatch(getPacks({page: +event.currentTarget.innerHTML}));
+    console.log(event.currentTarget)
   };
   const arr = [];
   for (let i = 1; i <= 10; i++) {

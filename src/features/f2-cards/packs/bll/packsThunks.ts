@@ -79,7 +79,7 @@ export const deletePack = (
 };
 
 export const updatePack = (
-  id: string
+  id: string, name: string
 ): ThunkAction<
   void,
   AppStoreType,
@@ -88,7 +88,7 @@ export const updatePack = (
 > => (dispatch) => {
   dispatch(ErrorHandlingActions.setLoading(true));
   packsAPI
-    .updatePack(id)
+    .updatePack(id, name)
     .then((data) => {
       dispatch(ErrorHandlingActions.setLoading(false));
       dispatch(getPacks({}));

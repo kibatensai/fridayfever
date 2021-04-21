@@ -82,7 +82,9 @@ export const deleteCard = (
 
 export const updateCard = (
   id: string,
-  pack_id: string
+  pack_id: string,
+  question: string,
+  answer: string
 ): ThunkAction<
   void,
   AppStoreType,
@@ -91,7 +93,7 @@ export const updateCard = (
 > => (dispatch) => {
   dispatch(ErrorHandlingActions.setLoading(true));
   cardsAPI
-    .updateCard(id)
+    .updateCard(id, question, answer)
     .then((data) => {
       dispatch(ErrorHandlingActions.setLoading(false));
       dispatch(getCards(pack_id));

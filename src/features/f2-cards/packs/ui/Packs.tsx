@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Redirect } from "react-router-dom"
 import { AppStoreType } from "../../../../main/bll/store"
@@ -12,14 +12,22 @@ import { PacksActions } from "../bll/packsActions"
 import { addPack, deletePack, getPacks, updatePack } from "../bll/packsThunks"
 import { Pagination } from "./Paginator"
 import s from './Packs.module.css'
+import { CustomModalWindow } from "../../../../main/ui/common/CustomModalWindow/CustomModalWindow"
+import CustomInput from "../../../../main/ui/common/CustomInput/CustomInput"
+import CustomButton from "../../../../main/ui/common/CustomButton/CustomButton"
+import { PackType } from "../bll/packsInitState"
 
 export const Packs = () => {
 
     const dispatch = useDispatch()
-    const packs = useSelector<AppStoreType, any>(state => state.packs.packs)
+    const packs = useSelector<AppStoreType, PackType[]>(state => state.packs.packs)
     const success = useSelector<AppStoreType, boolean>(state => state.login.success)
     const loading = useSelector<AppStoreType, boolean>(state => state.errorHandling.loading)
     const error = useSelector<AppStoreType, string>(state => state.errorHandling.error)
+    const recent_pack_id = useSelector<AppStoreType, string>(state => state.packs.recent_pack_id)
+
+    const [modalActive, setModalActive] = useState<boolean>(false)
+    const [titleFromModal, setTitleFromModal] = useState<string>('')
 
     useEffect(() => {
         if (!success) {dispatch(me())}
@@ -35,8 +43,10 @@ export const Packs = () => {
         dispatch(deletePack(id))
     }
 
-    const updatePackHandler = (id: string) => {
-        dispatch(updatePack(id))
+    const updatePackHandler = () => {
+        dispatch(updatePack(recent_pack_id, titleFromModal))
+        setTitleFromModal('')
+        setModalActive(false)
     }
 
     const packIdSaver = (id: string) => {
@@ -55,9 +65,15 @@ export const Packs = () => {
             <CustomTable title={['Packs', 'Cards', 'Updated', 'url']}
                 data={packs} addItemCallback={addPackHandler}
                 deleteItemCallback={deletePackHandler}
-                updateItemCallback={updatePackHandler}
                 saveRecentIdCallback={packIdSaver}
+                setModalView={setModalActive}
                 disabled={loading}/>
+            <CustomModalWindow active={modalActive} setActive={setModalActive}>
+                <p>Change Title</p>
+                <CustomInput value={titleFromModal} onChange={e => setTitleFromModal(e.target.value)}/>
+                <CustomButton onClick={() => updatePackHandler()}>Accept</CustomButton>
+                <CustomButton onClick={() => setModalActive(false)}>Cancel</CustomButton>
+            </CustomModalWindow>
         </div>
     )
 }

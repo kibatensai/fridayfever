@@ -25,12 +25,12 @@ export const cardsAPI = {
   deleteCard(id: string) {
     return instance.delete(`cards/card?&id=${id}`);
   },
-  updateCard(id: string) {
+  updateCard(id: string, question: string, answer: string) {
     return instance.put(`cards/card`, {
       card: {
         _id: id,
-        question: "Do you like icecream?",
-        answer: "You bet!",
+        question,
+        answer,
       },
     });
   },

@@ -33,11 +33,11 @@ export const packsAPI = {
   deletePack(id: string) {
     return instance.delete(`cards/pack?id=${id}`);
   },
-  updatePack(id: string) {
+  updatePack(id: string, name: string) {
     return instance.put('cards/pack', {
       cardsPack: {
         _id: id,
-        name: 'updating pack test',
+        name,
       },
     });
   },

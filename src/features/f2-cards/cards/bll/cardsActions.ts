@@ -8,5 +8,9 @@ export const CardsActions = {
     setCards: (cards: CardType[]) => ({
         type: 'cards/SET_CARDS',
         cards
-    } as const)
+    } as const),
+    setCardId: (id: string) => ({
+        type: 'cards/SET_CARD_ID',
+        id
+    } as const),
 }
