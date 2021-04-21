@@ -7,6 +7,7 @@ import { AppStoreType } from "../../../../main/bll/store";
 import { packsAPI, ParamsType } from "../dal/packsInstance";
 import { PacksActions, PacksActionsType } from "./packsActions";
 
+//Conflict №5 Difference in thunks for some reason (3 old ones)
 export const getPacks = (
   params: ParamsType
 ): ThunkAction<

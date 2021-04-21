@@ -10,6 +10,7 @@ import { ErrorHandlingActions } from "../../../../main/utils/ErrorHandling/bll/e
 import { me } from "../../../f1-auth/login/bll-login/loginThunks"
 import { PacksActions } from "../bll/packsActions"
 import { addPack, deletePack, getPacks, updatePack } from "../bll/packsThunks"
+import { Pagination } from "./Paginator"
 import s from './Packs.module.css'
 
 export const Packs = () => {
@@ -43,11 +44,14 @@ export const Packs = () => {
     }
 
     if (!success) { return <Redirect to={PATH.LOGIN} /> }
+    // Conflict №4 Added Pagination component in render
     return (
         <div className={s.packsContainer}>
             Packs page
             {loading && <Preloader/>}
             {error !== '' && <CustomSnackbar title={error} timer={3000} />}
+            <Pagination/>
+
             <CustomTable title={['Packs', 'Cards', 'Updated', 'url']}
                 data={packs} addItemCallback={addPackHandler}
                 deleteItemCallback={deletePackHandler}
