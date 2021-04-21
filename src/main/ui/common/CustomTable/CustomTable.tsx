@@ -12,11 +12,13 @@ export type CustomTablePropsType = {
     deleteItemCallback?: (id: string) => void
     updateItemCallback?: (id: string) => void
     saveRecentIdCallback?: (id: string) => void
+    setModalView?: (flag: boolean) => void
+
     disabled?: boolean
 
 }
 
-export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, disabled, addItemCallback, deleteItemCallback, updateItemCallback, saveRecentIdCallback }) => {
+export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, disabled, addItemCallback, deleteItemCallback, updateItemCallback, saveRecentIdCallback, setModalView}) => {
 
     const recentDate = (date: string): string => {
         return new Date(date).toLocaleDateString("ru", {
@@ -36,6 +38,8 @@ export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, disabl
 
     const onUpdateItemCallback = (id: string) => {
         updateItemCallback && updateItemCallback(id)
+        packIdSaver(id)
+        setModalView && setModalView(true)
     }
 
     const packIdSaver = (id: string) => {
