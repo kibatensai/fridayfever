@@ -1,4 +1,3 @@
-import axios from "axios"
 import { instance } from "../../../../main/dal/instance";
 
 export const loginAPI = {

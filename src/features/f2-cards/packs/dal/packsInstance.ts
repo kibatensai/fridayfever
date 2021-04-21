@@ -54,3 +54,4 @@ export type GetDataType = {
   token: string;
   tokenDeathTime: number;
 };
+

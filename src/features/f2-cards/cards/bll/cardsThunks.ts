@@ -1,83 +1,77 @@
-import { ThunkAction } from "redux-thunk";
-import { AppStoreType } from "../../../../main/bll/store";
+import {ThunkAction} from "redux-thunk";
+import {AppStoreType} from "../../../../main/bll/store";
 import {
-  ErrorHadnlingActionsType,
-  ErrorHandlingActions,
+    ErrorHadnlingActionsType,
+    ErrorHandlingActions,
 } from "../../../../main/utils/ErrorHandling/bll/errorHandlingActions";
-import { cardsAPI } from "../dal/cardsInstance";
-import { CardsActions, CardsActionsType } from "./cardsActions";
+import {cardsAPI, GetCardsParamsType} from "../dal/cardsInstance";
+import {CardsActions, CardsActionsType} from "./cardsActions";
 
 export const getCards = (
-  id: string
-): ThunkAction<
-  void,
-  AppStoreType,
-  unknown,
-  CardsActionsType | ErrorHadnlingActionsType
-> => (dispatch) => {
-  dispatch(ErrorHandlingActions.setLoading(true));
-  cardsAPI
-    .getCards(id)
-    .then(({ data }) => {
-      dispatch(ErrorHandlingActions.setLoading(false));
-      dispatch(CardsActions.setCards(data.cards));
-    })
-    .catch((e) => {
-      const error = e.response
-        ? e.response.data.error
-        : e.message + ", more details in the console";
-      dispatch(ErrorHandlingActions.setLoading(false));
-      dispatch(ErrorHandlingActions.setError(error));
-    });
+    id: string, params?: GetCardsParamsType
+): ThunkAction<void,
+    AppStoreType,
+    unknown,
+    CardsActionsType | ErrorHadnlingActionsType> => (dispatch) => {
+    dispatch(ErrorHandlingActions.setLoading(true));
+    cardsAPI
+        .getCards(id, params)
+        .then(({data}) => {
+            dispatch(ErrorHandlingActions.setLoading(false));
+            dispatch(CardsActions.setCards(data.cards));
+        })
+        .catch((e) => {
+            const error = e.response
+                ? e.response.data.error
+                : e.message + ", more details in the console";
+            dispatch(ErrorHandlingActions.setLoading(false));
+            dispatch(ErrorHandlingActions.setError(error));
+        });
 };
 
 export const addCard = (
-  id: string
-): ThunkAction<
-  void,
-  AppStoreType,
-  unknown,
-  CardsActionsType | ErrorHadnlingActionsType
-> => (dispatch) => {
-  dispatch(ErrorHandlingActions.setLoading(true));
-  cardsAPI
-    .addCard(id)
-    .then(({ data }) => {
-      dispatch(ErrorHandlingActions.setLoading(false));
-      dispatch(getCards(id));
-    })
-    .catch((e) => {
-      const error = e.response
-        ? e.response.data.error
-        : e.message + ", more details in the console";
-      dispatch(ErrorHandlingActions.setLoading(false));
-      dispatch(ErrorHandlingActions.setError(error));
-    });
+    id: string
+): ThunkAction<void,
+    AppStoreType,
+    unknown,
+    CardsActionsType | ErrorHadnlingActionsType> => (dispatch) => {
+    dispatch(ErrorHandlingActions.setLoading(true));
+    cardsAPI
+        .addCard(id)
+        .then(({data}) => {
+            dispatch(ErrorHandlingActions.setLoading(false));
+            dispatch(getCards(id));
+        })
+        .catch((e) => {
+            const error = e.response
+                ? e.response.data.error
+                : e.message + ", more details in the console";
+            dispatch(ErrorHandlingActions.setLoading(false));
+            dispatch(ErrorHandlingActions.setError(error));
+        });
 };
 
 export const deleteCard = (
-  id: string,
-  pack_id: string
-): ThunkAction<
-  void,
-  AppStoreType,
-  unknown,
-  CardsActionsType | ErrorHadnlingActionsType
-> => (dispatch) => {
-  dispatch(ErrorHandlingActions.setLoading(true));
-  cardsAPI
-    .deleteCard(id)
-    .then((data) => {
-      dispatch(ErrorHandlingActions.setLoading(false));
-      dispatch(getCards(pack_id));
-    })
-    .catch((e) => {
-      const error = e.response
-        ? e.response.data.error
-        : e.message + ", more details in the console";
-      dispatch(ErrorHandlingActions.setLoading(false));
-      dispatch(ErrorHandlingActions.setError(error));
-    });
+    id: string,
+    pack_id: string
+): ThunkAction<void,
+    AppStoreType,
+    unknown,
+    CardsActionsType | ErrorHadnlingActionsType> => (dispatch) => {
+    dispatch(ErrorHandlingActions.setLoading(true));
+    cardsAPI
+        .deleteCard(id)
+        .then((data) => {
+            dispatch(ErrorHandlingActions.setLoading(false));
+            dispatch(getCards(pack_id));
+        })
+        .catch((e) => {
+            const error = e.response
+                ? e.response.data.error
+                : e.message + ", more details in the console";
+            dispatch(ErrorHandlingActions.setLoading(false));
+            dispatch(ErrorHandlingActions.setError(error));
+        });
 };
 
 export const updateCard = (

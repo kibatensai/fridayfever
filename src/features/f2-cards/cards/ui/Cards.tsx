@@ -13,6 +13,11 @@ import { CardsActions } from "../bll/cardsActions"
 import { CardType } from "../bll/cardsInitState"
 import { addCard, deleteCard, getCards, updateCard } from "../bll/cardsThunks"
 import { CardsTable } from "./CardsTable"
+import {Search} from "../../../../main/ui/common/SearchComponent/SearchComponent";
+import {Sort} from "../../../../main/ui/common/SortComponent/Sort";
+import {DoubleRangeSlider} from "../../../../main/ui/common/DoubleRangeSlider/DoubleRangeSlider";
+import s from './Cards.module.css'
+
 
 export const Cards = () => {
 
@@ -20,6 +25,10 @@ export const Cards = () => {
     const cards = useSelector<AppStoreType, CardType[]>(state => state.cards.cards)
     const loading = useSelector<AppStoreType, boolean>(state => state.errorHandling.loading)
     const error = useSelector<AppStoreType, string>(state => state.errorHandling.error)
+    
+    const [minGrade, setMinGrade] = useState(0)
+    const [maxGrade, setMaxGrade] = useState(6)
+
     const recent_card_id = useSelector<AppStoreType, string>(state => state.cards.recent_card_id)
     const { id } = useParams<{ id: string }>()
 
@@ -51,12 +60,50 @@ export const Cards = () => {
         dispatch(CardsActions.setCardId(id))
     }
 
+    const searchByQuestion = (cardQuestion: string) => {
+        dispatch(getCards(id, {cardQuestion, min: minGrade, max: maxGrade}))
+    }
+
+    const searchByAnswer = (cardAnswer: string) => {
+        dispatch(getCards(id, {cardAnswer, min: minGrade, max: maxGrade}))
+    }
+
+    const sortByHigher = () => {
+        dispatch(getCards(id, {sortCards: "0grade"}))
+    }
+
+    const sortByLower = () => {
+        dispatch(getCards(id, {sortCards: "1grade"}))
+    }
+
+    const onSearchingGradesChange = (values: [number, number]) => {
+        setMinGrade(values[0])
+        setMaxGrade(values[1])
+    }
+
     return (
         <>
             Cards Page
             {loading && <Preloader/>}
-            {error !== '' && <CustomSnackbar title={error} timer={3000} />}
+            {error !== '' && <CustomSnackbar title={error} timer={3000}/>}
             <NavLink to={PATH.PACKS}><CustomButton>Back</CustomButton></NavLink>
+            SearchByQuestion
+            <div className={s.searchUtils}>
+                <div className={s.searchBlock}>
+                    Grade range:
+                    <DoubleRangeSlider min={0} max={6} value={[minGrade, maxGrade]}
+                                       onChangeRange={onSearchingGradesChange}/>
+                    Enter card question or enter card answer:
+                    <div className={s.searchInputs}>
+                        <Search placeholder={"Enter card question"} searchFunction={searchByQuestion}/>
+                        <Search placeholder={"Enter card answer"} searchFunction={searchByAnswer}/>
+                    </div>
+                </div>
+                <div className={s.sortBlock}>
+                    Sort by grade:
+                    <Sort sortByMore={sortByHigher} sortByFewer={sortByLower}/>
+                </div>
+            </div>
             <CardsTable title={['question', 'answer', 'grade', 'udated', 'url']}
                 data={cards} cardId={id}
                 addItemCallback={addCardHandler}

@@ -35,9 +35,10 @@ export const me = (): ThunkAction<void, AppStoreType, unknown, LoginActionsType>
   dispatch(LoginActions.setLoading(true));
   try {
     const res = await loginAPI.me();
-    if (res.status === 200) {
-      dispatch(LoginActions.setLoading(false));
-      dispatch(LoginActions.setSuccess(true));
+    if(res.status === 200) {
+    dispatch(LoginActions.setLoading(false));
+    dispatch(LoginActions.setSuccess(true))
+    dispatch(LoginActions.setUserId(res.data._id))
     }
   } catch (e) {
     const error = e.response ? e.response.data.error : e.message + ', more details in the console';

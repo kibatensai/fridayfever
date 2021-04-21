@@ -1,17 +1,34 @@
-import { instance } from "../../../../main/dal/instance";
-import { CardType } from "../bll/cardsInitState";
+import {instance} from "../../../../main/dal/instance";
+import {CardType} from "../bll/cardsInitState";
 
 type GetCardsDataType = {
-  cards: CardType[];
-  error: string;
+    cards: CardType[];
+    error: string;
+    maxGrade: number;
+    minGrade: number
 };
 
+export type GetCardsParamsType = {
+    min?: number
+    max?: number
+    sortCards?: string
+    page?: number
+    pageCount?: number
+    cardQuestion?: string
+    cardAnswer?: string
+}
+
 export const cardsAPI = {
-  getCards(cardsPack_id: string) {
-    return instance.get<GetCardsDataType>(
-      `cards/card?cardsPack_id=${cardsPack_id}`
-    );
-  },
+    getCards(cardsPack_id: string, params?: GetCardsParamsType) {
+        return instance.get<GetCardsDataType>(
+            `cards/card?cardsPack_id=${cardsPack_id}`, {
+                params: {
+                    pageCount: 100,
+                    ...params
+                }
+            }
+        );
+    },
   addCard(cardsPack_id: string) {
     return instance.post("cards/card", {
       card: {

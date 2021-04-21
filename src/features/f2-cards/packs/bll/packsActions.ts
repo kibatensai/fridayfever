@@ -19,5 +19,13 @@ export const PacksActions = {
       type: 'packs/SET_PACK_ID',
       id
   } as const),
+    setMinCardsCount: (minCardsCount: number) => ({
+        type: 'packs/SET_MIN_CARDS_COUNT',
+        minCardsCount
+    } as const),
+    setMaxCardsCount: (maxCardsCount: number) => ({
+        type: 'packs/SET_MAX_CARDS_COUNT',
+        maxCardsCount
+    } as const),
 }
-// Conflict №1 added action for pages 
+

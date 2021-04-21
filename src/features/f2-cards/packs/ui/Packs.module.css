@@ -1,3 +1,18 @@
 .packsContainer {
     margin-top: 30px;
 }
+.searchUtils {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-around;
+}
+.sortComponent {
+    align-self: flex-end;
+}
+.checkbox {
+    align-self: flex-end;
+    padding: 10px;
+}
+.searchBlock {
+    margin-left: 100px;
+}
