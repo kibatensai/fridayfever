@@ -1,22 +1,19 @@
-import React, { FC, memo } from "react"
-import { NavLink } from "react-router-dom"
-import { PATH } from "../../routes/Routes"
-import CustomButton from './../CustomButton/CustomButton'
-import navlinkStyling from './../stylingUtils/navlinkStyling.module.css'
-import s from './CustomTable.module.css'
+import React, { FC, memo } from "react";
+import CustomButton from "../../../../main/ui/common/CustomButton/CustomButton";
+import s from './../../../../main/ui/common/CustomTable/CustomTable.module.css';
 
-export type CustomTablePropsType = {
+export type CardsTablePropsType = {
     title: string[]
-    data: any
-    addItemCallback?: () => void
+    data?: any
+    cardId: string
+    disabled: boolean
+    addItemCallback?: (id: string) => void
     deleteItemCallback?: (id: string) => void
     updateItemCallback?: (id: string) => void
-    saveRecentIdCallback?: (id: string) => void
-    disabled?: boolean
 
 }
 
-export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, disabled, addItemCallback, deleteItemCallback, updateItemCallback, saveRecentIdCallback }) => {
+export const CardsTable: FC<CardsTablePropsType> = memo(({ title, data, cardId, disabled, addItemCallback, deleteItemCallback, updateItemCallback }) => {
 
     const recentDate = (date: string): string => {
         return new Date(date).toLocaleDateString("ru", {
@@ -27,7 +24,7 @@ export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, disabl
     };
 
     const onAddItemButtonClick = () => {
-        addItemCallback && addItemCallback()
+        addItemCallback && addItemCallback(cardId)
     }
 
     const onDeleteItemButtonClick = (id: string) => {
@@ -38,23 +35,19 @@ export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, disabl
         updateItemCallback && updateItemCallback(id)
     }
 
-    const packIdSaver = (id: string) => {
-        saveRecentIdCallback && saveRecentIdCallback(id)
-    }
-
     const titleFiller = title.map(t => <th key={'title-' + t}>
         {t}
     </th>)
 
     const dataFiller = data.map((dataItem: any, dataIndex: number) => <tr className={s.trStyling} key={title + '-row-' + (dataItem._id || dataIndex)}>
-        <td className={s.tdStyling}>{dataItem.name}</td>
-        <td className={s.tdStyling}>{dataItem.cardsCount}</td>
+        <td className={s.tdStyling}>{dataItem.question}</td>
+        <td className={s.tdStyling}>{dataItem.answer}</td>
+        <td className={s.tdStyling}>{dataItem.grade}</td>
         <td className={s.tdStyling}>{recentDate(dataItem.updated)}</td>
         <td className={s.tdStyling}></td>
         <td className={s.tdStyling}>
             <CustomButton onClick={() => onUpdateItemCallback(dataItem._id)} disabled={disabled}>upd</CustomButton>
             <CustomButton onClick={() => onDeleteItemButtonClick(dataItem._id)} disabled={disabled}>del</CustomButton>
-            <NavLink to={`${PATH.CARDS}/${dataItem._id}`} className={navlinkStyling.loginLink} onClick={() => packIdSaver(dataItem._id)}>Cards</NavLink>
         </td>
     </tr>)
 

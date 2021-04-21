@@ -1,6 +1,6 @@
 import React from "react"
 import {Switch} from "react-router"
-import {Redirect, Route} from "react-router-dom"
+import {Redirect, Route, useParams} from "react-router-dom"
 import {TestComponent} from "../../../features/f0-test/TestComponent/ui/TestComponent"
 import {Forgot} from "../../../features/f1-auth/forgot/ui-forgot/Forgot"
 import {Login} from "../../../features/f1-auth/login/ui-login/Login"
@@ -40,7 +40,7 @@ export const Routes = () => {
                 <Route path={PATH.FORGOT} render={() => <Forgot/>}/>
                 <Route path={PATH.SET_PASS} render={() => <SetPassword/>}/>
                 <Route path={PATH.PACKS} render={() => <Packs/>}/>
-                <Route path={PATH.CARDS} render={() => <Cards/>}/>
+                <Route path={`${PATH.CARDS}/:id`} render={() => <Cards/>}/>
                 <Route path={PATH.TEST} render={() => <TestComponent/>}/>
 
 

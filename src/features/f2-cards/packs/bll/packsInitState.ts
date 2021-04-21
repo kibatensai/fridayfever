@@ -21,14 +21,16 @@ export type PackType = {
 };
 
 export type PacksStateType = {
-  packs: PackType[];
-  packUser_id: string;
-  page: number;
-};
+    packs: PackType[]
+    packUser_id : string
+    recent_pack_id: string
+    page: number
+}
 
 export const PacksInitState: PacksStateType = {
-  packs: [],
-  packUser_id: '',
-  page: 1
-  
-};
+    packs: [],
+    packUser_id: '',
+    recent_pack_id: '',
+    page: 1
+}
+// Conflict №2 recent_pack_id / page difference (added both)

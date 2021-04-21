@@ -14,7 +14,6 @@ export const Profile = () => {
     const [isAuth, setIsAuth] = useState<boolean>(success)
 
     useEffect(() => {
-        if (success) { return }
         dispatch(me())
     }, [dispatch])
 

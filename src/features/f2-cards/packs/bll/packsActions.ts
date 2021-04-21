@@ -15,5 +15,9 @@ export const PacksActions = {
       type: "page/SET_PAGE",
       page,
     } as const),
-
+    setPackId: (id: string) => ({
+      type: 'packs/SET_PACK_ID',
+      id
+  } as const),
 }
+// Conflict №1 added action for pages 
