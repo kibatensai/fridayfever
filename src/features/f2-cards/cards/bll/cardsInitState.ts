@@ -25,9 +25,10 @@ export type CardType = {
 
 export type CardsStateType = {
     cards: CardType[]
-
+    recent_card_id: string
 }
 
 export const CardsInitState: CardsStateType = {
     cards: [],
+    recent_card_id: ''
 }

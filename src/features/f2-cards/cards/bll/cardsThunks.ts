@@ -75,24 +75,28 @@ export const deleteCard = (
 };
 
 export const updateCard = (
-    id: string,
-    pack_id: string
-): ThunkAction<void,
-    AppStoreType,
-    unknown,
-    CardsActionsType | ErrorHadnlingActionsType> => (dispatch) => {
-    dispatch(ErrorHandlingActions.setLoading(true));
-    cardsAPI
-        .updateCard(id)
-        .then((data) => {
-            dispatch(ErrorHandlingActions.setLoading(false));
-            dispatch(getCards(pack_id));
-        })
-        .catch((e) => {
-            const error = e.response
-                ? e.response.data.error
-                : e.message + ", more details in the console";
-            dispatch(ErrorHandlingActions.setLoading(false));
-            dispatch(ErrorHandlingActions.setError(error));
-        });
+  id: string,
+  pack_id: string,
+  question: string,
+  answer: string
+): ThunkAction<
+  void,
+  AppStoreType,
+  unknown,
+  CardsActionsType | ErrorHadnlingActionsType
+> => (dispatch) => {
+  dispatch(ErrorHandlingActions.setLoading(true));
+  cardsAPI
+    .updateCard(id, question, answer)
+    .then((data) => {
+      dispatch(ErrorHandlingActions.setLoading(false));
+      dispatch(getCards(pack_id));
+    })
+    .catch((e) => {
+      const error = e.response
+        ? e.response.data.error
+        : e.message + ", more details in the console";
+      dispatch(ErrorHandlingActions.setLoading(false));
+      dispatch(ErrorHandlingActions.setError(error));
+    });
 };

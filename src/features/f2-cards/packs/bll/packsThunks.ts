@@ -7,6 +7,7 @@ import {AppStoreType} from "../../../../main/bll/store";
 import {packsAPI, ParamsType} from "../dal/packsInstance";
 import {PacksActions, PacksActionsType} from "./packsActions";
 
+//Conflict №5 Difference in thunks for some reason (3 old ones)
 export const getPacks = (
     params: ParamsType
 ): ThunkAction<void,
@@ -74,23 +75,25 @@ export const deletePack = (
 };
 
 export const updatePack = (
-    id: string
-): ThunkAction<void,
-    AppStoreType,
-    unknown,
-    PacksActionsType | ErrorHadnlingActionsType> => (dispatch) => {
-    dispatch(ErrorHandlingActions.setLoading(true));
-    packsAPI
-        .updatePack(id)
-        .then((data) => {
-            dispatch(ErrorHandlingActions.setLoading(false));
-            dispatch(getPacks({}));
-        })
-        .catch((e) => {
-            const error = e.response
-                ? e.response.data.error
-                : e.message + ", more details in the console";
-            dispatch(ErrorHandlingActions.setLoading(false));
-            dispatch(ErrorHandlingActions.setError(error));
-        });
+  id: string, name: string
+): ThunkAction<
+  void,
+  AppStoreType,
+  unknown,
+  PacksActionsType | ErrorHadnlingActionsType
+> => (dispatch) => {
+  dispatch(ErrorHandlingActions.setLoading(true));
+  packsAPI
+    .updatePack(id, name)
+    .then((data) => {
+      dispatch(ErrorHandlingActions.setLoading(false));
+      dispatch(getPacks({}));
+    })
+    .catch((e) => {
+      const error = e.response
+        ? e.response.data.error
+        : e.message + ", more details in the console";
+      dispatch(ErrorHandlingActions.setLoading(false));
+      dispatch(ErrorHandlingActions.setError(error));
+    });
 };

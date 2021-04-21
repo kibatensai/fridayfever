@@ -10,6 +10,11 @@ export const PacksActions = {
       type: "packs/SET_PACKS",
       packs,
     } as const),
+    setPage: (page: number) =>
+    ({
+      type: "page/SET_PAGE",
+      page,
+    } as const),
     setPackId: (id: string) => ({
       type: 'packs/SET_PACK_ID',
       id
@@ -21,6 +26,6 @@ export const PacksActions = {
     setMaxCardsCount: (maxCardsCount: number) => ({
         type: 'packs/SET_MAX_CARDS_COUNT',
         maxCardsCount
-    } as const)
-
+    } as const),
 }
+

@@ -9,6 +9,12 @@ export const cardsReducer = (state = CardsInitState, action: CardsActionsType): 
                 cards: action.cards
             }
         }
+        case 'cards/SET_CARD_ID': {
+            return {
+                ...state,
+                recent_card_id: action.id
+            }
+        }
         default:
             return state
     }
