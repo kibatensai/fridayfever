@@ -44,4 +44,6 @@ export const packsAPI = {
 export type GetDataType = {
   cardPacks: PackType[];
   error: string;
+  maxCardsCount: number;
+  minCardsCount: number;
 };

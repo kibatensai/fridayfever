@@ -19,6 +19,8 @@ export const getPacks = (
         .then(({data}) => {
             dispatch(ErrorHandlingActions.setLoading(false));
             dispatch(PacksActions.setPacks(data.cardPacks));
+            dispatch(PacksActions.setMinCardsCount(data.minCardsCount));
+            dispatch(PacksActions.setMaxCardsCount(data.maxCardsCount));
         })
         .catch((e) => {
             const error = e.response

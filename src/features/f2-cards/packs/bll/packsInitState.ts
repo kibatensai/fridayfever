@@ -22,12 +22,16 @@ export type PackType = {
 
 export type PacksStateType = {
     packs: PackType[]
-    packUser_id : string
+    packUser_id: string
     recent_pack_id: string
+    minCardsCount: number
+    maxCardsCount: number
 }
 
 export const PacksInitState: PacksStateType = {
     packs: [],
     packUser_id: '',
-    recent_pack_id: ''
+    recent_pack_id: '',
+    minCardsCount: 0,
+    maxCardsCount: 100,
 }
