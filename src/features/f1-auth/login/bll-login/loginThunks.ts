@@ -54,6 +54,7 @@ export const me = (): ThunkAction<
     if(res.status === 200) {
     dispatch(LoginActions.setLoading(false));
     dispatch(LoginActions.setSuccess(true))
+      dispatch(LoginActions.setUserId(res.data._id))
     }
   } catch (e) {
     const error = e.response

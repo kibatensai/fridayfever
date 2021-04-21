@@ -28,6 +28,12 @@ export const loginReducer = (state = loginInitialState, action: LoginActionsType
                 success: false,
             }
         }
+        case "login/SET_USER_ID": {
+            return {
+                ...state,
+                user_id: action.userId
+            }
+        }
         default: {
             return state
         }

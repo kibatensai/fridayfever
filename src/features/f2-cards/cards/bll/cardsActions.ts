@@ -1,5 +1,5 @@
-import { InferActionsType } from "../../../../main/bll/action-types";
-import { CardType } from "./cardsInitState";
+import {InferActionsType} from "../../../../main/bll/action-types";
+import {CardType} from "./cardsInitState";
 
 
 export type CardsActionsType = InferActionsType<typeof CardsActions>

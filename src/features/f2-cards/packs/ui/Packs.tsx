@@ -14,6 +14,7 @@ import s from './Packs.module.css'
 import {Sort} from "../../../../main/ui/common/SortComponent/Sort";
 import {Search} from "../../../../main/ui/common/SearchComponent/SearchComponent";
 import {DoubleRangeSlider} from "../../../../main/ui/common/DoubleRangeSlider/DoubleRangeSlider";
+import CustomCheckbox from "../../../../main/ui/common/CustomCheckbox/CustomCheckbox";
 
 export const Packs = () => {
 
@@ -24,10 +25,11 @@ export const Packs = () => {
     const error = useSelector<AppStoreType, string>(state => state.errorHandling.error)
     const minCardsCount = useSelector<AppStoreType, number>(state => state.packs.minCardsCount)
     const maxCardsCount = useSelector<AppStoreType, number>(state => state.packs.maxCardsCount)
+    const userId = useSelector<AppStoreType, string | null>(state => state.login.user_id)
     const [min, setMin] = useState(minCardsCount)
     const [max, setMax] = useState(maxCardsCount)
-
-
+    const [getMyPacks, setGetMyPacks] = useState(false)
+    const finallyUserId = getMyPacks && userId !== null ? userId : undefined
 
     useEffect(() => {
         if (!success) {
@@ -54,20 +56,25 @@ export const Packs = () => {
     }
 
     const sortByMore = () => {
-        dispatch(getPacks({sortPacks: "0cardsCount"}))
+        dispatch(getPacks({sortPacks: "0cardsCount", user_id: finallyUserId}))
     }
 
     const sortByFewer = () => {
-        dispatch(getPacks({sortPacks: "1cardsCount"}))
+        dispatch(getPacks({sortPacks: "1cardsCount", user_id: finallyUserId}))
     }
 
     const searchByName = (name: string) => {
-        dispatch(getPacks({packName: name, min, max}))
+        dispatch(getPacks({packName: name, min, max, user_id: finallyUserId}))
     }
 
     const onSearchingValuesChange = (values: [number, number]) => {
         setMin(values[0])
         setMax(values[1])
+    }
+
+    const onMyPacksCheckboxChange = (value: boolean) => {
+        setGetMyPacks(value)
+        dispatch(getPacks({min, max, user_id: value && userId !== null ? userId : undefined}))
     }
 
     if (!success) {
@@ -79,9 +86,14 @@ export const Packs = () => {
             {loading && <Preloader/>}
             {error !== '' && <CustomSnackbar title={error} timer={3000}/>}
             <div className={s.searchUtils}>
-                <div>
+                <div className={s.checkbox}>
+                    My packs
+                    <CustomCheckbox onChangeChecked={onMyPacksCheckboxChange}/>
+                </div>
+                <div className={s.searchBlock}>
                     Search by amount of cards:
-                    <DoubleRangeSlider min={minCardsCount} max={maxCardsCount} value={[min, max]} onChangeRange={onSearchingValuesChange}/>
+                    <DoubleRangeSlider min={minCardsCount} max={maxCardsCount} value={[min, max]}
+                                       onChangeRange={onSearchingValuesChange}/>
                     Search by name:
                     <Search placeholder={"Search by name"} searchFunction={searchByName}/>
                 </div>
