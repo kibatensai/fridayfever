@@ -23,10 +23,10 @@ export const packsAPI = {
       },
     });
   },
-  addPack() {
+  addPack(name: string) {
     return instance.post('cards/pack', {
       cardsPack: {
-        name: 'adding pack test',
+        name,
       },
     });
   },

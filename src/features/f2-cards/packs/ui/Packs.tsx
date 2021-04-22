@@ -16,9 +16,9 @@ import { CustomModalWindow } from "../../../../main/ui/common/CustomModalWindow/
 import CustomInput from "../../../../main/ui/common/CustomInput/CustomInput"
 import CustomButton from "../../../../main/ui/common/CustomButton/CustomButton"
 import { PackType } from "../bll/packsInitState"
-import {Sort} from "../../../../main/ui/common/SortComponent/Sort";
-import {Search} from "../../../../main/ui/common/SearchComponent/SearchComponent";
-import {DoubleRangeSlider} from "../../../../main/ui/common/DoubleRangeSlider/DoubleRangeSlider";
+import { Sort } from "../../../../main/ui/common/SortComponent/Sort";
+import { Search } from "../../../../main/ui/common/SearchComponent/SearchComponent";
+import { DoubleRangeSlider } from "../../../../main/ui/common/DoubleRangeSlider/DoubleRangeSlider";
 import CustomCheckbox from "../../../../main/ui/common/CustomCheckbox/CustomCheckbox";
 
 
@@ -40,7 +40,9 @@ export const Packs = () => {
 
     const recent_pack_id = useSelector<AppStoreType, string>(state => state.packs.recent_pack_id)
 
+    const [newModalActive, setNewModalActive] = useState<boolean>(false)
     const [modalActive, setModalActive] = useState<boolean>(false)
+    const [newTitleFromModal, setNewTitleFromModal] = useState<string>('')
     const [titleFromModal, setTitleFromModal] = useState<string>('')
 
 
@@ -53,7 +55,9 @@ export const Packs = () => {
     }, [dispatch])
 
     const addPackHandler = () => {
-        dispatch(addPack())
+        dispatch(addPack(newTitleFromModal))
+        setNewTitleFromModal('')
+        setNewModalActive(false)
     }
 
     const deletePackHandler = (id: string) => {
@@ -72,15 +76,15 @@ export const Packs = () => {
 
 
     const sortByMore = () => {
-        dispatch(getPacks({sortPacks: "0cardsCount", user_id: finallyUserId}))
+        dispatch(getPacks({ sortPacks: "0cardsCount", user_id: finallyUserId }))
     }
 
     const sortByFewer = () => {
-        dispatch(getPacks({sortPacks: "1cardsCount", user_id: finallyUserId}))
+        dispatch(getPacks({ sortPacks: "1cardsCount", user_id: finallyUserId }))
     }
 
     const searchByName = (name: string) => {
-        dispatch(getPacks({packName: name, min, max, user_id: finallyUserId}))
+        dispatch(getPacks({ packName: name, min, max, user_id: finallyUserId }))
     }
 
     const onSearchingValuesChange = (values: [number, number]) => {
@@ -90,44 +94,53 @@ export const Packs = () => {
 
     const onMyPacksCheckboxChange = (value: boolean) => {
         setGetMyPacks(value)
-        dispatch(getPacks({min, max, user_id: value && userId !== null ? userId : undefined}))
+        dispatch(getPacks({ min, max, user_id: value && userId !== null ? userId : undefined }))
     }
 
     if (!success) {
-        return <Redirect to={PATH.LOGIN}/>
+        return <Redirect to={PATH.LOGIN} />
     }
 
     return (
         <div className={s.packsContainer}>
             Packs page
-            {loading && <Preloader/>}
+            {loading && <Preloader />}
             {error !== '' && <CustomSnackbar title={error} timer={3000} />}
-            <Pagination/>
+            <Pagination />
             <div className={s.searchUtils}>
                 <div className={s.checkbox}>
                     My packs
-                    <CustomCheckbox onChangeChecked={onMyPacksCheckboxChange}/>
+                    <CustomCheckbox onChangeChecked={onMyPacksCheckboxChange} />
                 </div>
                 <div className={s.searchBlock}>
                     Search by amount of cards:
                     <DoubleRangeSlider min={minCardsCount} max={maxCardsCount} value={[min, max]}
-                                       onChangeRange={onSearchingValuesChange}/>
+                        onChangeRange={onSearchingValuesChange} />
                     Search by name:
-                    <Search placeholder={"Search by name"} searchFunction={searchByName}/>
+                    <Search placeholder={"Search by name"} searchFunction={searchByName} />
                 </div>
                 <div className={s.sortComponent}>Sorting by amout of cards:
-                    <Sort sortByMore={sortByMore} sortByFewer={sortByFewer}/>
+                    <Sort sortByMore={sortByMore} sortByFewer={sortByFewer} />
                 </div>
             </div>
             <CustomTable title={['Packs', 'Cards', 'Updated', 'url']}
-                data={packs} addItemCallback={addPackHandler}
+                data={packs}
                 deleteItemCallback={deletePackHandler}
                 saveRecentIdCallback={packIdSaver}
                 setModalView={setModalActive}
-                disabled={loading}/>
+                setNewModalView={setNewModalActive}
+                disabled={loading} />
+            {/* New title */}
+            <CustomModalWindow active={newModalActive} setActive={setNewModalActive}>
+                <p>Choose Title</p>
+                <CustomInput value={newTitleFromModal} onChange={e => setNewTitleFromModal(e.target.value)} />
+                <CustomButton onClick={() => addPackHandler()}>Accept</CustomButton>
+                <CustomButton onClick={() => setNewModalActive(false)}>Cancel</CustomButton>
+            </CustomModalWindow>
+            {/* Update title */}
             <CustomModalWindow active={modalActive} setActive={setModalActive}>
                 <p>Change Title</p>
-                <CustomInput value={titleFromModal} onChange={e => setTitleFromModal(e.target.value)}/>
+                <CustomInput value={titleFromModal} onChange={e => setTitleFromModal(e.target.value)} />
                 <CustomButton onClick={() => updatePackHandler()}>Accept</CustomButton>
                 <CustomButton onClick={() => setModalActive(false)}>Cancel</CustomButton>
             </CustomModalWindow>
