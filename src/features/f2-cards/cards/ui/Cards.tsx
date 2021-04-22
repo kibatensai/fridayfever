@@ -13,9 +13,9 @@ import { CardsActions } from "../bll/cardsActions"
 import { CardType } from "../bll/cardsInitState"
 import { addCard, deleteCard, getCards, updateCard } from "../bll/cardsThunks"
 import { CardsTable } from "./CardsTable"
-import {Search} from "../../../../main/ui/common/SearchComponent/SearchComponent";
-import {Sort} from "../../../../main/ui/common/SortComponent/Sort";
-import {DoubleRangeSlider} from "../../../../main/ui/common/DoubleRangeSlider/DoubleRangeSlider";
+import { Search } from "../../../../main/ui/common/SearchComponent/SearchComponent";
+import { Sort } from "../../../../main/ui/common/SortComponent/Sort";
+import { DoubleRangeSlider } from "../../../../main/ui/common/DoubleRangeSlider/DoubleRangeSlider";
 import s from './Cards.module.css'
 
 
@@ -25,7 +25,7 @@ export const Cards = () => {
     const cards = useSelector<AppStoreType, CardType[]>(state => state.cards.cards)
     const loading = useSelector<AppStoreType, boolean>(state => state.errorHandling.loading)
     const error = useSelector<AppStoreType, string>(state => state.errorHandling.error)
-    
+
     const [minGrade, setMinGrade] = useState(0)
     const [maxGrade, setMaxGrade] = useState(6)
 
@@ -33,6 +33,11 @@ export const Cards = () => {
     const { id } = useParams<{ id: string }>()
 
     const [modalActive, setModalActive] = useState<boolean>(false)
+    const [newModalActive, setNewModalActive] = useState<boolean>(false)
+
+    const [newQuestionFromModal, setNewQuestionFromModal] = useState<string>('')
+    const [newAnswerFromModal, setNewAnswerFromModal] = useState<string>('')
+
     const [questionFromModal, setQuestionFromModal] = useState<string>('')
     const [answerFromModal, setAnswerFromModal] = useState<string>('')
 
@@ -42,7 +47,10 @@ export const Cards = () => {
     }, [dispatch, id])
 
     const addCardHandler = (id: string) => {
-        dispatch(addCard(id))
+        dispatch(addCard(id, newQuestionFromModal, newAnswerFromModal))
+        setNewQuestionFromModal('')
+        setNewAnswerFromModal('')
+        setNewModalActive(false)
     }
 
     const deleteCardHandler = (cardId: string) => {
@@ -61,19 +69,19 @@ export const Cards = () => {
     }
 
     const searchByQuestion = (cardQuestion: string) => {
-        dispatch(getCards(id, {cardQuestion, min: minGrade, max: maxGrade}))
+        dispatch(getCards(id, { cardQuestion, min: minGrade, max: maxGrade }))
     }
 
     const searchByAnswer = (cardAnswer: string) => {
-        dispatch(getCards(id, {cardAnswer, min: minGrade, max: maxGrade}))
+        dispatch(getCards(id, { cardAnswer, min: minGrade, max: maxGrade }))
     }
 
     const sortByHigher = () => {
-        dispatch(getCards(id, {sortCards: "0grade"}))
+        dispatch(getCards(id, { sortCards: "0grade" }))
     }
 
     const sortByLower = () => {
-        dispatch(getCards(id, {sortCards: "1grade"}))
+        dispatch(getCards(id, { sortCards: "1grade" }))
     }
 
     const onSearchingGradesChange = (values: [number, number]) => {
@@ -84,39 +92,50 @@ export const Cards = () => {
     return (
         <>
             Cards Page
-            {loading && <Preloader/>}
-            {error !== '' && <CustomSnackbar title={error} timer={3000}/>}
+            {loading && <Preloader />}
+            {error !== '' && <CustomSnackbar title={error} timer={3000} />}
             <NavLink to={PATH.PACKS}><CustomButton>Back</CustomButton></NavLink>
             SearchByQuestion
             <div className={s.searchUtils}>
                 <div className={s.searchBlock}>
                     Grade range:
                     <DoubleRangeSlider min={0} max={6} value={[minGrade, maxGrade]}
-                                       onChangeRange={onSearchingGradesChange}/>
+                        onChangeRange={onSearchingGradesChange} />
                     Enter card question or enter card answer:
                     <div className={s.searchInputs}>
-                        <Search placeholder={"Enter card question"} searchFunction={searchByQuestion}/>
-                        <Search placeholder={"Enter card answer"} searchFunction={searchByAnswer}/>
+                        <Search placeholder={"Enter card question"} searchFunction={searchByQuestion} />
+                        <Search placeholder={"Enter card answer"} searchFunction={searchByAnswer} />
                     </div>
                 </div>
                 <div className={s.sortBlock}>
                     Sort by grade:
-                    <Sort sortByMore={sortByHigher} sortByFewer={sortByLower}/>
+                    <Sort sortByMore={sortByHigher} sortByFewer={sortByLower} />
                 </div>
             </div>
             <CardsTable title={['question', 'answer', 'grade', 'udated', 'url']}
                 data={cards} cardId={id}
-                addItemCallback={addCardHandler}
                 deleteItemCallback={deleteCardHandler}
                 saveRecentIdCallback={cardIdSaver}
                 setModalView={setModalActive}
-                disabled={loading}/>
+                setNewModalView={setNewModalActive}
+                disabled={loading} />
+            {/* New card */}
+            <CustomModalWindow active={newModalActive} setActive={setNewModalActive}>
+                <p>Choose Question and Answer</p>
+                <p>Question</p>
+                <CustomInput value={newQuestionFromModal} onChange={e => setNewQuestionFromModal(e.target.value)} />
+                <p>Answer</p>
+                <CustomInput value={newAnswerFromModal} onChange={e => setNewAnswerFromModal(e.target.value)} />
+                <CustomButton onClick={() => addCardHandler(id)}>Accept</CustomButton>
+                <CustomButton onClick={() => setNewModalActive(false)}>Cancel</CustomButton>
+            </CustomModalWindow>
+            {/* Update card */}
             <CustomModalWindow active={modalActive} setActive={setModalActive}>
                 <p>Change Question and Answer</p>
                 <p>Question</p>
-                <CustomInput value={questionFromModal} onChange={e => setQuestionFromModal(e.target.value)}/>
+                <CustomInput value={questionFromModal} onChange={e => setQuestionFromModal(e.target.value)} />
                 <p>Answer</p>
-                <CustomInput value={answerFromModal} onChange={e => setAnswerFromModal(e.target.value)}/>
+                <CustomInput value={answerFromModal} onChange={e => setAnswerFromModal(e.target.value)} />
                 <CustomButton onClick={() => updateCardHandler()}>Accept</CustomButton>
                 <CustomButton onClick={() => setModalActive(false)}>Cancel</CustomButton>
             </CustomModalWindow>

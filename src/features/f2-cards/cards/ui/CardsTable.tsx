@@ -12,10 +12,11 @@ export type CardsTablePropsType = {
     updateItemCallback?: (id: string) => void
     saveRecentIdCallback?: (id: string) => void
     setModalView?: (flag: boolean) => void
+    setNewModalView?: (flag: boolean) => void
 
 }
 
-export const CardsTable: FC<CardsTablePropsType> = memo(({ title, data, cardId, disabled, addItemCallback, deleteItemCallback, updateItemCallback, saveRecentIdCallback, setModalView }) => {
+export const CardsTable: FC<CardsTablePropsType> = memo(({ title, data, cardId, disabled, addItemCallback, deleteItemCallback, updateItemCallback, saveRecentIdCallback, setModalView, setNewModalView }) => {
 
     const recentDate = (date: string): string => {
         return new Date(date).toLocaleDateString("ru", {
@@ -27,6 +28,7 @@ export const CardsTable: FC<CardsTablePropsType> = memo(({ title, data, cardId, 
 
     const onAddItemButtonClick = () => {
         addItemCallback && addItemCallback(cardId)
+        setNewModalView && setNewModalView(true)
     }
 
     const onDeleteItemButtonClick = (id: string) => {

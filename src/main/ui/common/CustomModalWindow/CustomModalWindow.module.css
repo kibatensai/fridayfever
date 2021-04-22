@@ -24,10 +24,11 @@
 
 .modal_content {
     padding: 20px;
-    background-color: #2a3c6698;
+    background-color: #192b55d8;
     transform: scale(0.5);
     transition: 0.4s all;
     width: 25vw;
+    box-shadow: 0.3em 0.3em 0.3em -0.1em #00b3db;
 }
 
 .modal_content_active {
