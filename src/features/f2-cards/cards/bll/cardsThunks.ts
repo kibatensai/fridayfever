@@ -124,9 +124,9 @@ export const updateCardGrade = (
     dispatch(ErrorHandlingActions.setLoading(true));
     cardsAPI
         .updateCardGrade(grade, id)
-        .then((data) => {
+        .then(({data}) => {
             dispatch(ErrorHandlingActions.setLoading(false));
-            dispatch(getCards(pack_id));
+            dispatch(CardsActions.updateCardsRate(data.updatedGrade.card_id ,data.updateGrade.grade));
         })
         .catch((e) => {
             const error = e.response

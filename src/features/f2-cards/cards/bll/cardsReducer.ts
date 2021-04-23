@@ -18,7 +18,7 @@ export const cardsReducer = (state = CardsInitState, action: CardsActionsType): 
         case 'cards/UPDATE_CARD_RATE': {
             return {
                 ...state,
-                cards: state.cards.map(card => card._id === action.type ? {...card, grade: action.rate} : card)
+                cards: state.cards.map(card => card._id === action.card_id ? {...card, grade: action.rate} : card)
             }
         }
         default:
