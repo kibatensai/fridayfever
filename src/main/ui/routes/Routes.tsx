@@ -7,9 +7,10 @@ import {Login} from "../../../features/f1-auth/login/ui-login/Login"
 import {Profile} from "../../../features/f1-auth/profile/ui-profile/Profile"
 import {Register} from "../../../features/f1-auth/register/ui-register/Register"
 import {SetPassword} from "../../../features/f1-auth/setPass/ui-setPass/SetPassword"
-import { Cards } from "../../../features/f2-cards/cards/ui/Cards"
-import { Packs } from "../../../features/f2-cards/packs/ui/Packs"
+import {Cards} from "../../../features/f2-cards/cards/ui/Cards"
+import {Packs} from "../../../features/f2-cards/packs/ui/Packs"
 import {ErrorPage} from "../errorPage/ui/ErrorPage"
+import {Learning} from "../../../features/f3-learning/learning/ui/Learning";
 
 export const PATH = {
     HOME: '/',
@@ -17,11 +18,12 @@ export const PATH = {
     REGISTER: "/register",
     PROFILE: "/profile",
     FORGOT: '/forgot',
-    SET_PASS: '/set-new-password/:id',
+    SET_PASS: '/set-new-password/',
     TEST: '/test',
     ERROR_PAGE: '/404',
     CARDS: '/cards',
-    PACKS: '/packs'
+    PACKS: '/packs',
+    LEARNING: '/learning'
 
     // add paths
 }
@@ -38,10 +40,11 @@ export const Routes = () => {
                 <Route path={PATH.REGISTER} render={() => <Register/>}/>
                 <Route path={PATH.PROFILE} render={() => <Profile/>}/>
                 <Route path={PATH.FORGOT} render={() => <Forgot/>}/>
-                <Route path={PATH.SET_PASS} render={() => <SetPassword/>}/>
+                <Route path={`${PATH.SET_PASS}/:id`} render={() => <SetPassword/>}/>
                 <Route path={PATH.PACKS} render={() => <Packs/>}/>
                 <Route path={`${PATH.CARDS}/:id`} render={() => <Cards/>}/>
                 <Route path={PATH.TEST} render={() => <TestComponent/>}/>
+                <Route path={`${PATH.LEARNING}/:id`} render={() => <Learning/>}/>
 
 
                 {/*у этого роута нет пути, он отрисуется если пользователь захочет попасть на несуществующую страницу*/}
