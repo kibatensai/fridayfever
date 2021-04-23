@@ -60,6 +60,7 @@ export const CustomTable: FC<CustomTablePropsType> = memo(({ title, data, disabl
             <CustomButton onClick={() => onUpdateItemCallback(dataItem._id)} disabled={disabled}>upd</CustomButton>
             <CustomButton onClick={() => onDeleteItemButtonClick(dataItem._id)} disabled={disabled}>del</CustomButton>
             <NavLink to={`${PATH.CARDS}/${dataItem._id}`} className={navlinkStyling.loginLink} onClick={() => packIdSaver(dataItem._id)}>Cards</NavLink>
+            <NavLink to={`${PATH.LEARNING}/${dataItem._id}`} className={navlinkStyling.loginLink} onClick={() => packIdSaver(dataItem._id)}>Learning</NavLink>
         </td>
     </tr>)
 

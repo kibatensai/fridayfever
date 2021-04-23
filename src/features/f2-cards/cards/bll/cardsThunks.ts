@@ -6,6 +6,7 @@ import {
 } from "../../../../main/utils/ErrorHandling/bll/errorHandlingActions";
 import { cardsAPI, GetCardsParamsType } from "../dal/cardsInstance";
 import { CardsActions, CardsActionsType } from "./cardsActions";
+import {AnswerRateType} from "../../../f3-learning/learning/ui/Learning";
 
 export const getCards = (
   id: string,
@@ -108,4 +109,30 @@ export const updateCard = (
       dispatch(ErrorHandlingActions.setLoading(false));
       dispatch(ErrorHandlingActions.setError(error));
     });
+};
+
+export const updateCardGrade = (
+    id: string,
+    grade: AnswerRateType,
+    pack_id: string
+): ThunkAction<
+    void,
+    AppStoreType,
+    unknown,
+    CardsActionsType | ErrorHadnlingActionsType
+    > => (dispatch) => {
+    dispatch(ErrorHandlingActions.setLoading(true));
+    cardsAPI
+        .updateCardGrade(grade, id)
+        .then((data) => {
+            dispatch(ErrorHandlingActions.setLoading(false));
+            dispatch(getCards(pack_id));
+        })
+        .catch((e) => {
+            const error = e.response
+                ? e.response.data.error
+                : e.message + ", more details in the console";
+            dispatch(ErrorHandlingActions.setLoading(false));
+            dispatch(ErrorHandlingActions.setError(error));
+        });
 };

@@ -22,6 +22,7 @@ export const Header = () => {
             <NavLink to={PATH.SET_PASS} className={style.nav_link} activeClassName={style.current}>Set Password</NavLink>
             <NavLink to={PATH.PACKS} className={style.nav_link} activeClassName={style.current}>Packs</NavLink>
             <NavLink to={`${PATH.CARDS}/${samePath}`} className={style.nav_link} activeClassName={style.current}>Cards</NavLink>
+            <NavLink to={`${PATH.LEARNING}/${samePath}`} className={style.nav_link} activeClassName={style.current}>Learning</NavLink>
         </div>
         </div>
     );
