@@ -68,24 +68,26 @@ export const Learning = () => {
     }
     return (
         <>
-
+            <p>Learning Page</p>
             {!check ?
 
-                <div>
+                <div className={s.questionBlock}>
                     { loading ?
                         <div className={s.learning_preloader}><Preloader /></div>
                               :
-                        <>
-                            <p>Learning Page</p>
-                            <div>Question: {currentCard.question}</div>
-                        </>
+                        <div className={s.question}>
+
+                            <div className={s.text}>Question: {currentCard.question}</div>
+                        </div>
                     }
                     <CustomButton onClick={() => setCheck(true)} disabled={loading}>Check</CustomButton>
                 </div>
                     :
-                <div>
-                    Answer: {currentCard.answer}
-                <div>
+                <div className={s.answerBlock}>
+                    <div className={s.answer}>
+                        <div className={s.text}>Answer: {currentCard.answer}</div>
+                    </div>
+                <div className={s.answerButtons}>
                     <div>Rate your answer:</div>
                     <CustomButton onClick={() => onRateButtonClick(1)} disabled={loading}>Easy to answer</CustomButton>
                     <CustomButton onClick={() => onRateButtonClick(2)} disabled={loading}>Right answer</CustomButton>
