@@ -5,6 +5,12 @@
     left: 930px;
 }
 
+.loading_preloader {
+    position: absolute;
+    margin-left: 50%;
+    transform: translate(50, 0);
+}
+
 .questionBlock {
     font-family: 'Roboto Mono';
     height: auto;

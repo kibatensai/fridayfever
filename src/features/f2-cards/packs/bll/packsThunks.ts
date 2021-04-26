@@ -6,6 +6,7 @@ import { ThunkAction } from "redux-thunk";
 import { AppStoreType } from "../../../../main/bll/store";
 import { packsAPI, ParamsType } from "../dal/packsInstance";
 import { PacksActions, PacksActionsType } from "./packsActions";
+import {CardsActions, CardsActionsType} from "../../cards/bll/cardsActions";
 
 export const getPacks = (
   params: ParamsType
@@ -13,7 +14,7 @@ export const getPacks = (
   void,
   AppStoreType,
   unknown,
-  PacksActionsType | ErrorHadnlingActionsType
+  PacksActionsType | ErrorHadnlingActionsType | CardsActionsType
 > => (dispatch) => {
   dispatch(ErrorHandlingActions.setLoading(true));
   packsAPI
@@ -23,6 +24,7 @@ export const getPacks = (
       dispatch(PacksActions.setPacks(data.cardPacks));
       dispatch(PacksActions.setMinCardsCount(data.minCardsCount));
       dispatch(PacksActions.setMaxCardsCount(data.maxCardsCount));
+        dispatch(CardsActions.setCards([]))
     })
     .catch((e) => {
       const error = e.response

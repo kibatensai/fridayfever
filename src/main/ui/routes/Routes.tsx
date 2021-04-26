@@ -18,7 +18,7 @@ export const PATH = {
     REGISTER: "/register",
     PROFILE: "/profile",
     FORGOT: '/forgot',
-    SET_PASS: '/set-new-password/',
+    SET_PASS: '/set-new-password/:id',
     TEST: '/test',
     ERROR_PAGE: '/404',
     CARDS: '/cards',
@@ -40,7 +40,7 @@ export const Routes = () => {
                 <Route path={PATH.REGISTER} render={() => <Register/>}/>
                 <Route path={PATH.PROFILE} render={() => <Profile/>}/>
                 <Route path={PATH.FORGOT} render={() => <Forgot/>}/>
-                <Route path={`${PATH.SET_PASS}/:id`} render={() => <SetPassword/>}/>
+                <Route path={PATH.SET_PASS} render={() => <SetPassword/>}/>
                 <Route path={PATH.PACKS} render={() => <Packs/>}/>
                 <Route path={`${PATH.CARDS}/:id`} render={() => <Cards/>}/>
                 <Route path={PATH.TEST} render={() => <TestComponent/>}/>
