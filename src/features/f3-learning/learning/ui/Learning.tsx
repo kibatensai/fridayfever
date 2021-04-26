@@ -68,7 +68,7 @@ export const Learning = () => {
         setCurrentCard(getCard(cards))
 
     }
-    if (loading) {
+    if (first) {
         return (
             <div className={s.loading_preloader}><Preloader/></div>
         )
