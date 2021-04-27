@@ -1,8 +1,8 @@
 {
   "files": {
-    "main.css": "/fridayfever/static/css/main.5f543e48.chunk.css",
-    "main.js": "/fridayfever/static/js/main.1a576abd.chunk.js",
-    "main.js.map": "/fridayfever/static/js/main.1a576abd.chunk.js.map",
+    "main.css": "/fridayfever/static/css/main.b025a411.chunk.css",
+    "main.js": "/fridayfever/static/js/main.48336154.chunk.js",
+    "main.js.map": "/fridayfever/static/js/main.48336154.chunk.js.map",
     "runtime-main.js": "/fridayfever/static/js/runtime-main.513b505c.js",
     "runtime-main.js.map": "/fridayfever/static/js/runtime-main.513b505c.js.map",
     "static/js/2.91a8ee98.chunk.js": "/fridayfever/static/js/2.91a8ee98.chunk.js",
@@ -10,14 +10,14 @@
     "static/js/3.bf370a95.chunk.js": "/fridayfever/static/js/3.bf370a95.chunk.js",
     "static/js/3.bf370a95.chunk.js.map": "/fridayfever/static/js/3.bf370a95.chunk.js.map",
     "index.html": "/fridayfever/index.html",
-    "static/css/main.5f543e48.chunk.css.map": "/fridayfever/static/css/main.5f543e48.chunk.css.map",
+    "static/css/main.b025a411.chunk.css.map": "/fridayfever/static/css/main.b025a411.chunk.css.map",
     "static/js/2.91a8ee98.chunk.js.LICENSE.txt": "/fridayfever/static/js/2.91a8ee98.chunk.js.LICENSE.txt",
     "static/media/dbringload.46fb05e0.svg": "/fridayfever/static/media/dbringload.46fb05e0.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.513b505c.js",
     "static/js/2.91a8ee98.chunk.js",
-    "static/css/main.5f543e48.chunk.css",
-    "static/js/main.1a576abd.chunk.js"
+    "static/css/main.b025a411.chunk.css",
+    "static/js/main.48336154.chunk.js"
   ]
 }
