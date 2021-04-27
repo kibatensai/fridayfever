@@ -18,6 +18,7 @@ export const Learning = () => {
     const {id} = useParams<{ id: string }>()
     const loading = useSelector<AppStoreType, boolean>(state => state.errorHandling.loading)
     const cards = useSelector<AppStoreType, CardType[]>(state => state.cards.cards)
+    const setGetNewCards = useSelector<AppStoreType, boolean>(state => state.errorHandling.getNewCards)
     const [check, setCheck] = useState<boolean>(false)
     const [first, setFirst] = useState<boolean>(true);
     const [currentCard, setCurrentCard] = useState<CardType>({
@@ -68,12 +69,11 @@ export const Learning = () => {
         setCurrentCard(getCard(cards))
 
     }
-    if (first) {
+    if (!setGetNewCards) {
         return (
             <div className={s.loading_preloader}><Preloader/></div>
         )
     }
-
     if (cards.length <= 0) {
         return (
             <div>

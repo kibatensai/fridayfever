@@ -1,6 +1,6 @@
 import {
   ErrorHandlingActions,
-  ErrorHadnlingActionsType,
+  ErrorHandlingActionsType,
 } from "./../../../../main/utils/ErrorHandling/bll/errorHandlingActions";
 import { ThunkAction } from "redux-thunk";
 import { AppStoreType } from "../../../../main/bll/store";
@@ -14,7 +14,7 @@ export const getPacks = (
   void,
   AppStoreType,
   unknown,
-  PacksActionsType | ErrorHadnlingActionsType | CardsActionsType
+  PacksActionsType | ErrorHandlingActionsType | CardsActionsType
 > => (dispatch) => {
   dispatch(ErrorHandlingActions.setLoading(true));
   packsAPI
@@ -41,7 +41,7 @@ export const addPack = (
   void,
   AppStoreType,
   unknown,
-  PacksActionsType | ErrorHadnlingActionsType
+  PacksActionsType | ErrorHandlingActionsType
 > => (dispatch) => {
   dispatch(ErrorHandlingActions.setLoading(true));
   packsAPI
@@ -65,7 +65,7 @@ export const deletePack = (
   void,
   AppStoreType,
   unknown,
-  PacksActionsType | ErrorHadnlingActionsType
+  PacksActionsType | ErrorHandlingActionsType
 > => (dispatch) => {
   dispatch(ErrorHandlingActions.setLoading(true));
   packsAPI
@@ -90,7 +90,7 @@ export const updatePack = (
   void,
   AppStoreType,
   unknown,
-  PacksActionsType | ErrorHadnlingActionsType
+  PacksActionsType | ErrorHandlingActionsType
 > => (dispatch) => {
   dispatch(ErrorHandlingActions.setLoading(true));
   packsAPI
