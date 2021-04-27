@@ -24,7 +24,6 @@ export const PATH = {
     CARDS: '/cards',
     PACKS: '/packs',
     LEARNING: '/learning'
-
     // add paths
 }
 
@@ -45,7 +44,6 @@ export const Routes = () => {
                 <Route path={`${PATH.CARDS}/:id`} render={() => <Cards/>}/>
                 <Route path={PATH.TEST} render={() => <TestComponent/>}/>
                 <Route path={`${PATH.LEARNING}/:id`} render={() => <Learning/>}/>
-
 
                 {/*у этого роута нет пути, он отрисуется если пользователь захочет попасть на несуществующую страницу*/}
                 <Route render={() => <ErrorPage/>}/>

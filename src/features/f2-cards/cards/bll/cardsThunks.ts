@@ -1,7 +1,7 @@
 import {ThunkAction} from "redux-thunk";
 import {AppStoreType} from "../../../../main/bll/store";
 import {
-    ErrorHadnlingActionsType,
+    ErrorHandlingActionsType,
     ErrorHandlingActions,
 } from "../../../../main/utils/ErrorHandling/bll/errorHandlingActions";
 import {cardsAPI, GetCardsParamsType} from "../dal/cardsInstance";
@@ -14,13 +14,15 @@ export const getCards = (
 ): ThunkAction<void,
     AppStoreType,
     unknown,
-    CardsActionsType | ErrorHadnlingActionsType> => (dispatch) => {
+    CardsActionsType | ErrorHandlingActionsType> => (dispatch) => {
     dispatch(ErrorHandlingActions.setLoading(true));
+    dispatch(ErrorHandlingActions.setGetNewCards(false))
     cardsAPI
         .getCards(id, params)
         .then(({data}) => {
             dispatch(CardsActions.setCards(data.cards));
             dispatch(ErrorHandlingActions.setLoading(false));
+            dispatch(ErrorHandlingActions.setGetNewCards(true))
         })
         .catch((e) => {
             const error = e.response
@@ -28,6 +30,7 @@ export const getCards = (
                 : e.message + ", more details in the console";
             dispatch(ErrorHandlingActions.setLoading(false));
             dispatch(ErrorHandlingActions.setError(error));
+            dispatch(ErrorHandlingActions.setGetNewCards(true))
         });
 };
 
@@ -38,7 +41,7 @@ export const addCard = (
 ): ThunkAction<void,
     AppStoreType,
     unknown,
-    CardsActionsType | ErrorHadnlingActionsType> => (dispatch) => {
+    CardsActionsType | ErrorHandlingActionsType> => (dispatch) => {
     dispatch(ErrorHandlingActions.setLoading(true));
     cardsAPI
         .addCard(id, question, answer)
@@ -61,7 +64,7 @@ export const deleteCard = (
 ): ThunkAction<void,
     AppStoreType,
     unknown,
-    CardsActionsType | ErrorHadnlingActionsType> => (dispatch) => {
+    CardsActionsType | ErrorHandlingActionsType> => (dispatch) => {
     dispatch(ErrorHandlingActions.setLoading(true));
     cardsAPI
         .deleteCard(id)
@@ -86,7 +89,7 @@ export const updateCard = (
 ): ThunkAction<void,
     AppStoreType,
     unknown,
-    CardsActionsType | ErrorHadnlingActionsType> => (dispatch) => {
+    CardsActionsType | ErrorHandlingActionsType> => (dispatch) => {
     dispatch(ErrorHandlingActions.setLoading(true));
     cardsAPI
         .updateCard(id, question, answer)
@@ -110,7 +113,7 @@ export const updateCardGrade = (
 ): ThunkAction<void,
     AppStoreType,
     unknown,
-    CardsActionsType | ErrorHadnlingActionsType> => (dispatch) => {
+    CardsActionsType | ErrorHandlingActionsType> => (dispatch) => {
     dispatch(ErrorHandlingActions.setLoading(true));
     cardsAPI
         .updateCardGrade(grade, id)

@@ -1,7 +1,7 @@
-import { ErrorHadnlingActionsType } from "./errorHandlingActions";
-import { errorHandlingInitialState, ErrorHandlingInitState } from "./errorHandlingInitState";
+import {ErrorHandlingActionsType} from "./errorHandlingActions";
+import {errorHandlingInitialState, ErrorHandlingInitState} from "./errorHandlingInitState";
 
-export const errorHandlingReducer = (state = errorHandlingInitialState, action: ErrorHadnlingActionsType): ErrorHandlingInitState => {
+export const errorHandlingReducer = (state = errorHandlingInitialState, action: ErrorHandlingActionsType): ErrorHandlingInitState => {
     switch (action.type) {
         case "errorHandling/SET_ERROR": {
             return {
@@ -25,6 +25,12 @@ export const errorHandlingReducer = (state = errorHandlingInitialState, action: 
                 error: "",
                 loading: action.loading,
                 success: false,
+            }
+        }
+        case "errorHandling/SET_GET_NEW_CARDS": {
+            return {
+                ...state,
+                getNewCards: action.getNewCards
             }
         }
         default: {
